@@ -1,54 +1,36 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import MakeBoard from './MakeBoard/MakeBoard';
 import BoardDetail from './BoardDetail/BoardDetail';
+import { getUser } from '../../actions/actions';
 
-class BoardContainer extends Component {
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getUser: user => dispatch(getUser(user)),
+    }
+  };
+
+const mapStateToProps = state => {
+return { renderBoardDetail: state.renderBoardDetail };
+};
+
+class ConnectedBoardContainer extends Component {
     constructor(){
         super();
         this.state = {
             classChange: false,
             modal: false,
             editModal: false,
-            boards: [],
             selectedImage: {},
             id: "",
             editBoardId: "",
-            renderBoardDetail: false
         }
         this.toggle = this.toggle.bind(this);
         this.toggleEdit = this.toggleEdit.bind(this);
     }
 
     componentDidMount(){
-        this.getUser();
-    };
-
-    getUser = async () => {
-        const userInfo = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards`, {
-            credentials: 'include'
-        })
-        const userInfoJSON = await userInfo.json();
-        this.setState({
-            boards: userInfoJSON.data.boards,
-            renderBoardDetail: true
-        })
-    };
-
-    createBoard = async (formData) => {
-        const newBoard = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards`, {
-            credentials: 'include',
-            method: "POST",
-            body: JSON.stringify(formData),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-        const parsedResponse = await newBoard.json();
-        if(newBoard.status === 200){
-            this.setState({
-                boards: [parsedResponse.data, ...this.state.boards]
-            })
-        }
+        this.props.getUser();
     };
 
     selectedImageStateChange = (newState) => {
@@ -187,20 +169,19 @@ class BoardContainer extends Component {
     }; 
 
     render(){
-        console.log(this.state.boards)
         return (
             <div>   
-                <MakeBoard createBoard={ this.createBoard } selectedImageStateChange={ this.selectedImageStateChange } 
+                <MakeBoard selectedImageStateChange={ this.selectedImageStateChange } 
                 handleImageClick={ this.handleImageClick } imageStateChange={ this.imageStateChange } 
                 updateBoard={ this.updateBoard } toggle={ this.toggle } modal={ this.state.modal } classChange={ this.state.classChange } 
                 handleImageSubmit={ this.handleImageSubmit } />
                 <hr />
                 {
-                    this.state.renderBoardDetail ?
-                        <BoardDetail boards={ this.state.boards } addNewImageButtonClick={ this.addNewImageButtonClick } 
+                    this.props.renderBoardDetail ?
+                        <BoardDetail addNewImageButtonClick={ this.addNewImageButtonClick } 
                         deleteBoardButtonClick={ this.deleteBoardButtonClick } deleteImageButtonClick= { this.deleteImageButtonClick }
                         toggleEdit={ this.toggleEdit } editModal={ this.state.editModal } editBoardButtonClick={ this.editBoardButtonClick }
-                        handleEditSubmit={ this.handleEditSubmit } showBoards={ this.props.showBoards }  />
+                        handleEditSubmit={ this.handleEditSubmit }  />
                     :
                     null
                 }      
@@ -209,5 +190,7 @@ class BoardContainer extends Component {
         )
     }
 }
+
+const BoardContainer = connect(mapStateToProps, mapDispatchToProps)(ConnectedBoardContainer);
 
 export default BoardContainer;

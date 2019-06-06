@@ -41,5 +41,3 @@ class ConnectedApp extends Component {
 const App = connect(mapStateToProps, mapDispatchToProps)(ConnectedApp);
 
 export default App;
-
-// showBoards={ this.state.currentUser.boards }

@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Search from './Search';
 import { Button } from 'reactstrap';
+import { createBoard } from '../../../actions/actions';
 
-class MakeBoard extends Component {
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createBoard: board => dispatch(createBoard(board)),
+    }
+  };
+
+class ConnectedMakeBoard extends Component {
     constructor(){
         super();
         this.state = {
@@ -57,5 +65,7 @@ class MakeBoard extends Component {
     }
 
 }
+
+const MakeBoard = connect(null, mapDispatchToProps)(ConnectedMakeBoard);
 
 export default MakeBoard;

@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ImageList from './ImageList';
 import EditBoard from './EditBoard/EditBoard';
 import { Button } from 'reactstrap';
 
-class BoardDetail extends Component {
+const mapStateToProps = state => {
+    return { boards: state.boards };
+  };
+
+class ConnectedBoardDetail extends Component {
     constructor(){
         super();
         this.state = {
@@ -40,5 +45,7 @@ class BoardDetail extends Component {
         )
     }
 }
+
+const BoardDetail = connect(mapStateToProps)(ConnectedBoardDetail);
 
 export default BoardDetail;
