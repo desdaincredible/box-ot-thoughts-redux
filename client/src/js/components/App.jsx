@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
-import './App.css';
+import { connect } from "react-redux";
+import '../../App.css';
 import BoardContainer from './BoardContainer/BoardContainer';
 import UserContainer from './UserContainer/UserContainer';
+import { handleRegister } from '../actions/actions'
 
-class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      loggedIn: false,
-      currentUser: null
-    }
+const mapDispatchToProps = (dispatch) => {
+  return {
+      handleRegister: user => dispatch(handleRegister(user))
   }
+};
+
+class ConnectedApp extends Component {
+  // constructor(){
+  //   super();
+  //   this.state = {
+  //     loggedIn: false,
+  //     currentUser: null
+  //   }
+  // }
   // handleRegister = async (formData) => {
   //   try{
   //     console.log(formData, 'register');
@@ -35,35 +43,35 @@ class App extends Component {
   //   }
   // };
 
-  handleLogin = async (formData) => {
-    try{
-      const loginUser = await fetch('http://localhost:9000/users/login', {
-        method: "POST",
-        body: JSON.stringify(formData),
-        credentials: 'include',
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      const parsedLoginResponse = await loginUser.json();
-      console.log(parsedLoginResponse, 'login')
-      if(parsedLoginResponse.status === 200){
-        this.setState({
-          loggedIn: true,
-          currentUser: parsedLoginResponse.data,
-        })
-      }
-    }catch(err){
-      console.log(err);
-    }
-  };
+  // handleLogin = async (formData) => {
+  //   try{
+  //     const loginUser = await fetch('http://localhost:9000/users/login', {
+  //       method: "POST",
+  //       body: JSON.stringify(formData),
+  //       credentials: 'include',
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
+  //     })
+  //     const parsedLoginResponse = await loginUser.json();
+  //     console.log(parsedLoginResponse, 'login')
+  //     if(parsedLoginResponse.status === 200){
+  //       this.setState({
+  //         loggedIn: true,
+  //         currentUser: parsedLoginResponse.data,
+  //       })
+  //     }
+  //   }catch(err){
+  //     console.log(err);
+  //   }
+  // };
 
-  logout = async () => {
-    this.setState({
-      loggedIn: false,
-      currentUser: null
-    })
-  };
+  // logout = async () => {
+  //   this.setState({
+  //     loggedIn: false,
+  //     currentUser: null
+  //   })
+  // };
   
   render(){
     return (
@@ -74,7 +82,7 @@ class App extends Component {
         <div>
           <button onClick={ this.logout }>Logout</button>
           {
-            this.state.loggedIn ?
+            this.props.loggedIn ?
             <BoardContainer showBoards={ this.state.currentUser.boards } />
             :
             <UserContainer handleRegister={ this.handleRegister } handleLogin={ this.handleLogin } handleEditProfile={ this.handleEditProfile } />
@@ -84,5 +92,7 @@ class App extends Component {
     );
   }
 }
+
+const App = connect(null, mapDispatchToProps)(ConnectedApp);
 
 export default App;

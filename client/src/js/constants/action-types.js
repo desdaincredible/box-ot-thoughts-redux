@@ -1,1 +1,1 @@
-export const REGISTERED = "REGISTERED";
+export const REGISTER = "REGISTER";

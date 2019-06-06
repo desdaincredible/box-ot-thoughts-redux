@@ -1,5 +1,6 @@
 const initialState = {
-    articles: []
+  loggedIn: false,
+  currentUser: null,
   };
 
    const rootReducer = (state = initialState, action) => {

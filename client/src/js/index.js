@@ -1,7 +1,7 @@
-import store from "../js/store/index";
+import store from "../js/store/store";
 
 // change to new functions
-// import { addArticle } from "../js/actions/index";
+import { handleRegister } from "./actions/actions";
 
 window.store = store;
-// window.addArticle = addArticle;
+window.handleRegister = handleRegister;
