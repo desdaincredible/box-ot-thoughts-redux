@@ -1,10 +1,19 @@
+import { REGISTER } from "../constants/action-types";
+
 const initialState = {
   loggedIn: false,
   currentUser: null,
   };
 
-   const rootReducer = (state = initialState, action) => {
-    return state;
-  };
 
-  export default rootReducer;
+export const rootReducer = (state = initialState, action) => {
+  if (action.type === REGISTER) {
+    return {
+      loggingIn: true,
+      user: action.payload.data
+    } 
+}
+  return state;
+};
+
+
