@@ -154,7 +154,6 @@ class BoardContainer extends Component {
         this.updateBoardAfterDelete(board);
     }; 
 
-    // change add new image to this?
     editBoardButtonClick = (e) => {
         this.setState({
             editBoardId: e.target.id
@@ -171,7 +170,6 @@ class BoardContainer extends Component {
         this.toggleEdit();
     };
 
-    // figure out why this is working but breaking image loop
     editBoard = async (text, board) => {
         const response = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${this.state.editBoardId}`, {
             method: "PUT",

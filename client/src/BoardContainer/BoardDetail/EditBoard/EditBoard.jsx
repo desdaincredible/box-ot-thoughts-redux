@@ -16,11 +16,6 @@ class EditBoard extends Component {
         })
     };
 
-    // handleSubmit = (e, id) => {
-    //     e.preventDefault();
-    //     this.searchImages(this.state);
-    // };
-
     render(){
         console.log(this.props)
         return (
