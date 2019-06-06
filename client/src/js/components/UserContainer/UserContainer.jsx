@@ -8,9 +8,9 @@ class UserContainer extends Component {
         return(
             <div>
                     <div>
-                        <Register handleRegister={ this.props.handleRegister } />
+                        <Register />
                         <hr />
-                        <Login handleLogin={ this.props.handleLogin } />
+                        <Login />
                     </div>
             </div>
         )

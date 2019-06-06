@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { handleLogin } from '../../../actions/actions';
+
 
 class Login extends Component {
     constructor(){
@@ -36,4 +39,11 @@ class Login extends Component {
     }
 }
 
-export default Login;
+
+const mapStateToProps = (state) => {
+    return {
+        loggedIn: true,
+    }
+};
+
+export default connect( mapStateToProps, { handleLogin })(Login);

@@ -1,4 +1,4 @@
-import { REGISTER } from "../constants/action-types";
+import { REGISTER, LOGIN, LOGOUT } from "../constants/action-types";
 
 const initialState = {
   loggedIn: false,
@@ -9,10 +9,22 @@ const initialState = {
 export const rootReducer = (state = initialState, action) => {
   if (action.type === REGISTER) {
     return {
-      loggingIn: true,
-      user: action.payload.data
+      loggedIn: true,
+      currentUser: action.payload.data
     } 
-}
+  }
+  if (action.type === LOGIN) {
+    return {
+      loggedIn: true,
+      currentUser: action.payload.data
+    } 
+  }
+  if (action.type === LOGOUT) {
+    return {
+      loggedIn: false,
+      currentUser: null
+    } 
+  }
   return state;
 };
 

@@ -37,20 +37,7 @@ class Register extends Component {
 const mapStateToProps = (state) => {
     return {
         loggedIn: true,
-        // currentUser: this.props.   
     }
 };
-
-// const mapStateToProps = (state) => {
-//     return {
-//         articles: state.remoteArticles.slice(0, 10)
-//     }
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         handleRegister: currentUser => dispatch(handleRegister(currentUser))
-//     }
-// };
 
 export default connect( mapStateToProps, { handleRegister })(Register);
