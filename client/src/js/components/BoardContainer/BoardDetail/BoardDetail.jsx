@@ -36,7 +36,7 @@ class ConnectedBoardDetail extends Component {
         return(
             <div>
                 <div>
-                    <EditBoard toggleEdit={ this.props.toggleEdit } editModal={ this.props.editModal } handleEditSubmit={ this.props.handleEditSubmit } />
+                    <EditBoard toggleEdit={ this.props.toggleEdit } editModal={ this.props.editModal } handleEditSubmit={ this.props.handleEditSubmit } editBoardId={ this.props.editBoardId } />
                 </div>
                 <div>
                     { boardsToShow }
@@ -49,3 +49,5 @@ class ConnectedBoardDetail extends Component {
 const BoardDetail = connect(mapStateToProps)(ConnectedBoardDetail);
 
 export default BoardDetail;
+
+// onClick={()=>this.props.dispatch({ type:'EDIT_BOARD', id: board._id })}

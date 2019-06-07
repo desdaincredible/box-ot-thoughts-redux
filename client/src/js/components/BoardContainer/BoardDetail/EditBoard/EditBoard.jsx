@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { UPDATE_BOARD } from '../../../../constants/action-types';
 
 class EditBoard extends Component {
     constructor(){
@@ -14,9 +16,18 @@ class EditBoard extends Component {
         this.setState({
             [e.target.name] : e.target.value
         })
+        // this.props.handleEditSubmit(this.state)
     };
 
+    // handleEditSubmit = () => {
+    //     console.log('edit submit hit')
+    //     console.log(this.state, 'state', this.props.editBoardId, 'editBoardId')
+    //     this.props.dispatch({ type: UPDATE_BOARD, id: this.props.editBoardId, data: this.state })
+    // }
+
+
     render(){
+        console.log(this.props, 'edit modal props')
         return (
             <div>
                 <Modal isOpen={ this.props.editModal } toggle={ this.props.toggleEdit }>
@@ -42,4 +53,4 @@ class EditBoard extends Component {
     };
 }
 
-export default EditBoard;
+export default connect()(EditBoard);

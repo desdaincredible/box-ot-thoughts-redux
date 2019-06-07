@@ -43,11 +43,24 @@ export const rootReducer = (state = initialState, action) => {
   if (action.type === DELETE_BOARD){
     return Object.assign({}, state, { boards: state.boards.filter(board => board._id !== action.payload) });
   }
-  if (action.type === EDIT_BOARD){
-    console.log(action.payload)
-    return Object.assign({}, state, { boards: state.boards.concat(action.payload.data) });
+  // if (action.type === EDIT_BOARD){
+  //   console.log(action.payload)
+  //   return Object.assign({}, state, { boards: state.boards.map((board) => board.id === action.id ? {...board} : board) });
+  // }
+  if (action.type === UPDATE_BOARD){
+    console.log(action.payload, 'update board reducer')
+    return Object.assign({}, state, { boards: state.boards.map((board) => {
+      if(board.id === action.id){
+        return {
+          ...board,
+          title: action.data.title,
+          description: action.data.description
+        }
+      } else return board
+    })
+    })
+
   }
   return state;
 };
-
 

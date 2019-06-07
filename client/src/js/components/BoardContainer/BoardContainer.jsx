@@ -110,42 +110,47 @@ class ConnectedBoardContainer extends Component {
     }; 
 
     editBoardButtonClick = (e) => {
+        console.log('hit edit button')
         this.toggleEdit();
         this.setState({
             editBoardId: e.target.id
         })
-        this.props.boards.map((board) => {
-            if (board._id === this.state.editBoardId){
-                console.log(board, 'board in if check')
-                this.props.findEditBoard(board)
-            }
-        })
+        // this.props.boards.map((board) => {
+        //     if (board._id === this.state.editBoardId){
+        //         console.log(board, 'board in if check')
+        //         this.props.findEditBoard(board)
+        //     }
+        // })
     };
 
     handleEditSubmit = (text) => {
+        console.log('edit submit hit')
         console.log(text, 'text')
         console.log(this.state.editBoardId, 'this.state.editBoardId')
-        this.props.editBoard(text)
+        this.props.editBoard(text, this.state.editBoardId)
 
         this.toggleEdit();
     };
 
+
     render(){
         return (
             <div>   
-                <MakeBoard updateBoard={ this.updateBoard } 
+                <MakeBoard updateBoard={ this.updateBoard } toggle={ this.toggle } modal={ this.state.modal }
+
                 selectedImageStateChange={ this.selectedImageStateChange } 
                 handleImageClick={ this.handleImageClick } imageStateChange={ this.imageStateChange } 
-                 toggle={ this.toggle } modal={ this.state.modal } classChange={ this.state.classChange } 
+                  classChange={ this.state.classChange } 
                 handleImageSubmit={ this.handleImageSubmit } />
                 <hr />
                 {
                     this.props.renderBoardDetail ?
                         <BoardDetail toggleEdit={ this.toggleEdit } editModal={ this.state.editModal } editBoardId={ this.state.editBoardId }
+                        editBoardButtonClick={ this.editBoardButtonClick } handleEditSubmit={ this.handleEditSubmit }
+
                         addNewImageButtonClick={ this.addNewImageButtonClick } 
                         deleteBoardButtonClick={ this.deleteBoardButtonClick } deleteImageButtonClick= { this.deleteImageButtonClick }
-                          editBoardButtonClick={ this.editBoardButtonClick }
-                        handleEditSubmit={ this.handleEditSubmit }  />
+                        />
                     :
                     null
                 }      

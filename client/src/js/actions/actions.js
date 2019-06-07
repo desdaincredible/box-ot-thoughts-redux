@@ -89,9 +89,11 @@ export function findEditBoard(board){
   editBoard(board)
 }
 
-export function editBoard(board, text){
+export function editBoard(text, id){
   console.log(text, 'text')
-  console.log(board, 'board')
+  console.log(id, 'id')
+  return ({ type: UPDATE_BOARD, id: id, data: text })
+
   //   return function(dispatch){
   //   return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${editBoard}`, {
   //     method: "PUT",
