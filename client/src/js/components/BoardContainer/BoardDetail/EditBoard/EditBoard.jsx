@@ -33,8 +33,8 @@ class EditBoard extends Component {
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={ () => this.props.handleEditSubmit(this.state) }>Submit</Button>{' '}
-                    <Button color="secondary" onClick={ this.props.toggleEdit }>Cancel</Button>
+                    <Button color="secondary" onClick={ () => this.props.handleEditSubmit(this.state) }>Submit</Button>{' '}
+                    <Button outline color="secondary" onClick={ this.props.toggleEdit }>Cancel</Button>
                 </ModalFooter>
                 </Modal>
             </div>

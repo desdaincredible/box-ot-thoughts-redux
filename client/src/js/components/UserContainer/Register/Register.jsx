@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import { handleRegister } from '../../../actions/actions';
 
@@ -26,7 +27,7 @@ class Register extends Component {
                 <form onSubmit={ this.handleSubmit }>
                     <div>*username: <input onChange={ this.handleChange } type="text" name="username" /></div>
                     <div>*password: <input onChange={ this.handleChange } type="password" name="password" /></div> 
-                    <div><input type="submit" /></div>
+                    <Button color="secondary" type="submit">Register</Button>
                     <div><small>*required</small></div>
                 </form>
             </div>

@@ -1,5 +1,5 @@
 import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD, 
-  DELETE_BOARD } from '../constants/action-types';
+  DELETE_BOARD, EDIT_BOARD } from '../constants/action-types';
 
 const mapStateToProps = state => {
   return { 
@@ -83,6 +83,26 @@ export function deleteBoard(foundBoard){
   .then( dispatch({ type: DELETE_BOARD, payload: foundBoard }))
 
   }
+};
+
+export function findEditBoard(board){
+  editBoard(board)
+}
+
+export function editBoard(board, text){
+  console.log(text, 'text')
+  console.log(board, 'board')
+  //   return function(dispatch){
+  //   return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${editBoard}`, {
+  //     method: "PUT",
+  //     body: JSON.stringify(editBoard),
+  //     // headers: {
+  //     //     "Content-Type": "application/json"
+  //     // }
+  // })
+  // .then(response => response.json())
+  // .then(json => { dispatch({ type: EDIT_BOARD, payload: json })})  
+  // }
 };
 
 // export function updateBoard(foundBoard){

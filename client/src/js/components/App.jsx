@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import '../../App.css';
+import { Button } from 'reactstrap';
 import BoardContainer from './BoardContainer/BoardContainer';
 import UserContainer from './UserContainer/UserContainer';
 import { handleRegister, handleLogin, logout } from '../actions/actions'
@@ -25,7 +26,7 @@ class ConnectedApp extends Component {
         <h4>a box of thoughts</h4>
       </div>
         <div>
-          <button onClick={ this.props.logout }>Logout</button>
+          <Button outline color="secondary" onClick={ this.props.logout }>Logout</Button>
           {
             this.props.loggedIn ?
             <BoardContainer />
