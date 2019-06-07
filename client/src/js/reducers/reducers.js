@@ -37,30 +37,20 @@ export const rootReducer = (state = initialState, action) => {
   if (action.type === SELECTED_IMAGE){
     return Object.assign({}, state, { selectedImage: action.payload.data });
   }
-  // if (action.type === UPDATE_BOARD){
-  //   return Object.assign({}, state, { boards: state.boards.concat(action.payload.data) });
-  // }
   if (action.type === DELETE_BOARD){
     return Object.assign({}, state, { boards: state.boards.filter(board => board._id !== action.payload) });
   }
-  // if (action.type === EDIT_BOARD){
-  //   console.log(action.payload)
-  //   return Object.assign({}, state, { boards: state.boards.map((board) => board.id === action.id ? {...board} : board) });
-  // }
   if (action.type === UPDATE_BOARD){
-    console.log(action.payload, 'update board reducer')
-    return Object.assign({}, state, { boards: state.boards.map((board) => {
-      if(board.id === action.id){
-        return {
-          ...board,
-          title: action.data.title,
-          description: action.data.description
-        }
+    const addNewBoard = state.boards.map((board) => {
+      if(board._id === action.payload.id){
+        return {...board, title: action.payload.title, description: action.payload.description}
       } else return board
     })
-    })
-
+    console.log(addNewBoard)
+    return Object.assign({}, state, { boards: addNewBoard })
   }
+  
+
   return state;
 };
 

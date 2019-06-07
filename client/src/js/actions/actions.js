@@ -89,22 +89,18 @@ export function findEditBoard(board){
   editBoard(board)
 }
 
-export function editBoard(text, id){
-  console.log(text, 'text')
-  console.log(id, 'id')
-  return ({ type: UPDATE_BOARD, id: id, data: text })
-
-  //   return function(dispatch){
-  //   return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${editBoard}`, {
-  //     method: "PUT",
-  //     body: JSON.stringify(editBoard),
-  //     // headers: {
-  //     //     "Content-Type": "application/json"
-  //     // }
-  // })
-  // .then(response => response.json())
-  // .then(json => { dispatch({ type: EDIT_BOARD, payload: json })})  
-  // }
+export function editBoard(response){
+  return function(dispatch){
+    return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${response.id}`, {
+      method: "PUT",
+      body: JSON.stringify(response),
+      headers: {
+          "Content-Type": "application/json"
+      }
+  })
+  .then( dispatch({ type: UPDATE_BOARD, payload: response })
+  )
+  }
 };
 
 // export function updateBoard(foundBoard){

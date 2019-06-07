@@ -9,12 +9,15 @@ class EditBoard extends Component {
         this.state = {
             title: "",
             description: "",
+            id: ""
         }
     };
 
     handleChange = (e) => {
         this.setState({
-            [e.target.name] : e.target.value
+            [e.target.name] : e.target.value,
+            id: this.props.editBoardId
+
         })
         // this.props.handleEditSubmit(this.state)
     };
@@ -27,7 +30,6 @@ class EditBoard extends Component {
 
 
     render(){
-        console.log(this.props, 'edit modal props')
         return (
             <div>
                 <Modal isOpen={ this.props.editModal } toggle={ this.props.toggleEdit }>

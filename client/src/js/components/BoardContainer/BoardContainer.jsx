@@ -110,7 +110,6 @@ class ConnectedBoardContainer extends Component {
     }; 
 
     editBoardButtonClick = (e) => {
-        console.log('hit edit button')
         this.toggleEdit();
         this.setState({
             editBoardId: e.target.id
@@ -123,12 +122,8 @@ class ConnectedBoardContainer extends Component {
         // })
     };
 
-    handleEditSubmit = (text) => {
-        console.log('edit submit hit')
-        console.log(text, 'text')
-        console.log(this.state.editBoardId, 'this.state.editBoardId')
-        this.props.editBoard(text, this.state.editBoardId)
-
+    handleEditSubmit = (response) => {
+        this.props.editBoard(response)
         this.toggleEdit();
     };
 
