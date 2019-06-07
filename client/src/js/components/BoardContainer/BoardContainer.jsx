@@ -2,16 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MakeBoard from './MakeBoard/MakeBoard';
 import BoardDetail from './BoardDetail/BoardDetail';
-import { getUser } from '../../actions/actions';
+import { getUser, updateBoard } from '../../actions/actions';
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getUser: user => dispatch(getUser(user)),
+        // updateBoard: board => dispatch(updateBoard(board)),
     }
   };
 
 const mapStateToProps = state => {
-return { renderBoardDetail: state.renderBoardDetail };
+    return { 
+        renderBoardDetail: state.renderBoardDetail, 
+        boards: state.boards,
+        selectedImage: state.selectedImage,
+    }
 };
 
 class ConnectedBoardContainer extends Component {
@@ -21,7 +26,6 @@ class ConnectedBoardContainer extends Component {
             classChange: false,
             modal: false,
             editModal: false,
-            selectedImage: {},
             id: "",
             editBoardId: "",
         }
@@ -33,20 +37,26 @@ class ConnectedBoardContainer extends Component {
         this.props.getUser();
     };
 
-    selectedImageStateChange = (newState) => {
-        this.setState({
-            selectedImage: newState.selectedImage
-        })
-    };
-
     handleImageSubmit = ()=> {
         this.toggle();
-        this.state.boards.map((board) => {
+        this.props.boards.map((board) => {
             if(board._id === this.state.id){
                 this.updateBoard(board, board._id)
             }
         })
     }; 
+
+    updateBoard = async (foundBoard, id) => {
+        foundBoard.images.push(this.state.selectedImage);
+        await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${id}`, {
+            method: "PUT",
+            body: JSON.stringify(foundBoard),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        this.props.getUser();
+    };
 
     // toggleClass = () => {
     //     // console.log(this.state.classChange, 'toggle class');
@@ -75,23 +85,12 @@ class ConnectedBoardContainer extends Component {
     };
 
     addNewImageButtonClick = (e, id) => {
-        this.state.boards.map((board) => {
+        this.props.boards.map((board) => {
             this.setState({
                 id: e.target.id
             })
         })
         this.toggle();
-    };
-
-    updateBoard = async (foundBoard, id) => {
-        foundBoard.images.push(this.state.selectedImage);
-        await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${id}`, {
-            method: "PUT",
-            body: JSON.stringify(foundBoard),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
     };
 
     deleteBoardButtonClick = (e, id) => {
@@ -171,9 +170,10 @@ class ConnectedBoardContainer extends Component {
     render(){
         return (
             <div>   
-                <MakeBoard selectedImageStateChange={ this.selectedImageStateChange } 
+                <MakeBoard updateBoard={ this.updateBoard } 
+                selectedImageStateChange={ this.selectedImageStateChange } 
                 handleImageClick={ this.handleImageClick } imageStateChange={ this.imageStateChange } 
-                updateBoard={ this.updateBoard } toggle={ this.toggle } modal={ this.state.modal } classChange={ this.state.classChange } 
+                 toggle={ this.toggle } modal={ this.state.modal } classChange={ this.state.classChange } 
                 handleImageSubmit={ this.handleImageSubmit } />
                 <hr />
                 {

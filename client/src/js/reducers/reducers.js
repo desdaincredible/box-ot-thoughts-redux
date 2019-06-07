@@ -1,10 +1,11 @@
-import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD } from "../constants/action-types";
+import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD } from "../constants/action-types";
 
 const initialState = {
   loggedIn: false,
   currentUser: null,
   boards: [],
   renderBoardDetail: false,
+  selectedImage: {},
   };
 
 
@@ -32,8 +33,13 @@ export const rootReducer = (state = initialState, action) => {
   }
   if (action.type === CREATE_BOARD){
     return Object.assign({}, state, { boards: state.boards.concat(action.payload.data) });
-}
+  }
+  if (action.type === SELECTED_IMAGE){
+    return Object.assign({}, state, { selectedImage: action.payload.data });
+  }
+  // if (action.type === UPDATE_BOARD){
+  //   return Object.assign({}, state, { boards: state.boards.concat(action.payload.data) });
+  // }
   return state;
 };
 
-// return Object.assign({}, state, { remoteArticles: state.remoteArticles.concat(action.payload) });

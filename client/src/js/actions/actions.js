@@ -1,5 +1,12 @@
-import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD } from '../constants/action-types';
+import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD } from '../constants/action-types';
 
+const mapStateToProps = state => {
+  return { 
+      renderBoardDetail: state.renderBoardDetail, 
+      boards: state.boards,
+      selectedImage: state.selectedImage,
+  }
+};
 
 export function handleRegister(formData){
     return function(dispatch){
@@ -61,4 +68,30 @@ export function createBoard(formData){
     .then(response => response.json())
     .then(json => { dispatch({ type: CREATE_BOARD, payload: json })})
   }
-}
+};
+
+export function selectedImageStateChange(newState){
+  return ({ type: SELECTED_IMAGE, payload: newState })
+};
+
+
+// export function updateBoard(foundBoard){
+//   return function(dispatch){
+//     // foundBoard.images.push(this.state.selectedImage);
+
+//     return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${foundBoard._id}`, {
+//       method: "PUT",
+//       body: JSON.stringify(foundBoard),
+//       headers: {
+//           "Content-Type": "application/json"
+//       }
+//   })
+//     .then(res => { dispatch(updateBoard(foundBoard));
+//     });  
+//   }
+// };
+
+// export function updatedBoardToDisplay(foundBoard){
+//   return { type: UPDATE_BOARD, payload: foundBoard.json()
+//   };
+// };
