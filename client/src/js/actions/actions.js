@@ -1,4 +1,5 @@
-import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD } from '../constants/action-types';
+import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD, 
+  DELETE_BOARD } from '../constants/action-types';
 
 const mapStateToProps = state => {
   return { 
@@ -74,6 +75,15 @@ export function selectedImageStateChange(newState){
   return ({ type: SELECTED_IMAGE, payload: newState })
 };
 
+export function deleteBoard(foundBoard){
+  return function(dispatch){
+    return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${foundBoard}`, {
+      method: "DELETE",
+  })
+  .then( dispatch({ type: DELETE_BOARD, payload: foundBoard }))
+
+  }
+};
 
 // export function updateBoard(foundBoard){
 //   return function(dispatch){
@@ -95,3 +105,4 @@ export function selectedImageStateChange(newState){
 //   return { type: UPDATE_BOARD, payload: foundBoard.json()
 //   };
 // };
+

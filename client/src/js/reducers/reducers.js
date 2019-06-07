@@ -1,4 +1,4 @@
-import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD } from "../constants/action-types";
+import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD, DELETE_BOARD } from "../constants/action-types";
 
 const initialState = {
   loggedIn: false,
@@ -40,6 +40,10 @@ export const rootReducer = (state = initialState, action) => {
   // if (action.type === UPDATE_BOARD){
   //   return Object.assign({}, state, { boards: state.boards.concat(action.payload.data) });
   // }
+  if (action.type === DELETE_BOARD){
+    return Object.assign({}, state, { boards: state.boards.filter(board => board._id !== action.payload) });
+  }
   return state;
 };
+
 

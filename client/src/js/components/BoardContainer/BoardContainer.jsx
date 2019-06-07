@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MakeBoard from './MakeBoard/MakeBoard';
 import BoardDetail from './BoardDetail/BoardDetail';
-import { getUser, updateBoard } from '../../actions/actions';
+import { getUser, updateBoard, deleteBoard } from '../../actions/actions';
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getUser: user => dispatch(getUser(user)),
+        deleteBoard: board => dispatch(deleteBoard(board)),
         // updateBoard: board => dispatch(updateBoard(board)),
     }
   };
@@ -94,24 +95,12 @@ class ConnectedBoardContainer extends Component {
     };
 
     deleteBoardButtonClick = (e, id) => {
-        this.state.boards.map((board) => {
+        this.props.boards.map((board) => {
             if (board._id === e.target.id){
-                this.deleteBoard(board._id)
+                this.props.deleteBoard(board._id)
             }
         })
     };
-
-    deleteBoard = async (id) => {
-        console.log(id)
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${id}`, {
-            method: "DELETE",
-        })
-        if(response.status === 200){
-            this.setState({
-                boards: this.state.boards.filter(board => board._id !== id)
-            })
-        }
-    }; 
 
     updateBoardAfterDelete = async (board) => {
         const response = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${board._id}`, {
