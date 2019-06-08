@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MakeBoard from './MakeBoard/MakeBoard';
 import BoardDetail from './BoardDetail/BoardDetail';
-import { getUser, updateBoard, deleteBoard, editBoard, findEditBoard } from '../../actions/actions';
+import { getUser, deleteBoard, editBoard, findEditBoard } from '../../actions/actions';
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -10,7 +10,6 @@ const mapDispatchToProps = (dispatch) => {
         deleteBoard: board => dispatch(deleteBoard(board)),
         editBoard: board => dispatch(editBoard(board)),
         findEditBoard: board => dispatch(findEditBoard(board)),
-        // updateBoard: board => dispatch(updateBoard(board)),
     }
   };
 
@@ -61,18 +60,10 @@ class ConnectedBoardContainer extends Component {
         this.props.getUser();
     };
 
-    // toggleClass = () => {
-    //     // console.log(this.state.classChange, 'toggle class');
-    //     this.setState({
-    //         classChange: true
-    //     })
-    // };
-
     handleImageClick = (e, image) => {
         this.setState({
             selectedImage: e
         })
-        // this.toggleClass();
     };
 
     toggle(){
@@ -114,12 +105,6 @@ class ConnectedBoardContainer extends Component {
         this.setState({
             editBoardId: e.target.id
         })
-        // this.props.boards.map((board) => {
-        //     if (board._id === this.state.editBoardId){
-        //         console.log(board, 'board in if check')
-        //         this.props.findEditBoard(board)
-        //     }
-        // })
     };
 
     handleEditSubmit = (response) => {

@@ -46,23 +46,43 @@ p {
 .header {
   background-image: url('https://source.unsplash.com/random?{texture}');
   opacity: .7;
+  background-size: cover;
 }
 
 #photos {
   line-height: 0;
   margin: 50px;
-  -webkit-column-count: 5;
+  -webkit-column-count: 3;
   -webkit-column-gap:   0px;
-  -moz-column-count:    5;
+  -moz-column-count:    3;
   -moz-column-gap:      0px;
-  column-count:         5;
+  column-count:         3;
   column-gap:           0px;  
 }
 
 #photos img {
-  width: 100% !important;
-  height: auto !important;
-  /* display: block; */
+  width: 100%;
+  height: auto;
+}
+
+.image-options {
+  display: inline;
+  line-height: 0;
+  -webkit-column-count: 1;
+  -webkit-column-gap:   0px;
+  -moz-column-count:    1;
+  -moz-column-gap:      0px;
+  column-count:         1;
+  column-gap:           0px;  
+  vertical-align: middle;
+
+}
+
+.image-options img {
+  width: 30%;
+  height: auto;
+  padding: 5px;
+  background-color: white
 }
 
 @media (max-width: 1200px) {
@@ -92,6 +112,11 @@ p {
   -webkit-column-count: 1;
   column-count:         1;
   }
+  .image-options {
+    -moz-column-count:    3;
+    -webkit-column-count: 3;
+    column-count:         3;
+    }
 }
 
 #center-images {
@@ -105,4 +130,12 @@ p {
 
 #parent {
   margin-top: 30px
+}
+
+img {
+  margin:5px;
+}
+
+.selected{
+   box-shadow:0px 12px 22px 1px #333;
 }
