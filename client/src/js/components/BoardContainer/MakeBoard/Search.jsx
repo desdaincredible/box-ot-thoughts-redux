@@ -13,15 +13,19 @@ class Search extends Component {
             currentPage: 1
         }
     };
-    componentDidMount(){
-        this.clearModal()
+    componentWillReceiveProps = (nextProps) => {
+        this.setState({
+            search: nextProps.search,
+            results: nextProps.results,
+            images: nextProps.images
+        })
     }
 
     clearModal = () => {
         this.setState({
-            search: "",
-            results: [],
-            images: []
+            search: this.props.search,
+            results: this.props.results,
+            images: this.props.images
         })
     };
 
@@ -68,9 +72,11 @@ class Search extends Component {
     };
 
     render(){
+        // console.log(this.props, 'props')
+        // console.log(this.state, 'state')
         return (
             <div>
-                <Modal isOpen={ this.props.modal } toggle={ this.props.toggle }>
+                <Modal isOpen={ this.props.modal } toggle={ this.props.toggle } id="search-modal">
                 <ModalHeader toggle={ this.props.toggle }>Search for Images</ModalHeader>
                 <ModalBody>
                     <form onSubmit={ this.handleSubmit }>

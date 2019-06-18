@@ -20,6 +20,13 @@ class ConnectedMakeBoard extends Component {
             selectedImage: {}
         }
     };
+    componentDidMount(){
+        this.setState({
+            title: '',
+            description: '',
+        })
+    }
+
     handleChange = (e) => {
         this.setState({
             [e.target.name] : e.target.value
@@ -29,9 +36,9 @@ class ConnectedMakeBoard extends Component {
         e.preventDefault();
         this.props.createBoard(this.state);
         this.setState({
-            title: null,
-            description: null
-        }) 
+            title: '',
+            description: '',
+        })
     };
 
     render(){
@@ -40,10 +47,10 @@ class ConnectedMakeBoard extends Component {
                 <h1>Create a New Board</h1>
                 <form onSubmit={ this.handleSubmit }>
                     <div>
-                        *Title: <input onChange={ this.handleChange } type="text" name="title" placeholder=""/>
+                        *Title: <input onChange={ this.handleChange } type="text" name="title" placeholder="title"/>
                     </div>
                     <div>
-                        Description: <input onChange={ this.handleChange } type="text" name="description" />
+                        Description: <textarea onChange={ this.handleChange } type="text" name="description" placeholder="description" />
                     </div>
                     <div>
                         <Button className="button" color="secondary" type="submit">Submit</Button>
@@ -54,7 +61,9 @@ class ConnectedMakeBoard extends Component {
                         <small>* required</small>
                     </div>
                     <div>
-                        <Search imageStateChange={ this.props.imageStateChange } handleImageClick={ this.props.handleImageClick } 
+                        <Search search={this.props.search} results={this.props.results} images={this.props.images}
+                        
+                        imageStateChange={ this.props.imageStateChange } handleImageClick={ this.props.handleImageClick } 
                         updateBoard={ this.props.updateBoard } toggle={ this.props.toggle } modal={ this.props.modal } 
                         classChange={ this.props.classChange } handleImageSubmit={ this.props.handleImageSubmit } clearModal= { this.props.clearModal } />
                     </div>

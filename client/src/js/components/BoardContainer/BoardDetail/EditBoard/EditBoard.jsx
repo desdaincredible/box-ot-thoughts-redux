@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { UPDATE_BOARD } from '../../../../constants/action-types';
 
 class EditBoard extends Component {
     constructor(){
@@ -9,37 +8,41 @@ class EditBoard extends Component {
         this.state = {
             title: "",
             description: "",
-            id: ""
         }
     };
 
     handleChange = (e) => {
         this.setState({
             [e.target.name] : e.target.value,
-            id: this.props.editBoardId
-
         })
-        // this.props.handleEditSubmit(this.state)
     };
 
-    // handleEditSubmit = () => {
-    //     console.log('edit submit hit')
-    //     console.log(this.state, 'state', this.props.editBoardId, 'editBoardId')
-    //     this.props.dispatch({ type: UPDATE_BOARD, id: this.props.editBoardId, data: this.state })
-    // }
-
+    findBoard = async (foundBoard) => {
+        const board = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${foundBoard}`, {
+            credentials: 'include'
+        })
+        const boardJSON = await board.json();
+        this.setState({
+            title: boardJSON.data.title,
+            description: boardJSON.data.description
+        })
+    };
 
     render(){
+        if(this.props.editModal){
+            this.findBoard(this.props.editBoardId)
+        }
+
         return (
             <div>
                 <Modal isOpen={ this.props.editModal } toggle={ this.props.toggleEdit }>
                 <ModalHeader toggle={ this.props.toggleEdit }>Edit Board Details</ModalHeader>
                 <ModalBody>
                     <div>
-                        *Title: <input onChange={ this.handleChange } type="text" name="title" value={ this.props.title }/>
+                        *Title: <input onChange={ this.handleChange } type="text" name="title" value={ this.state.title }/>
                     </div>
                     <div>
-                        Description: <input onChange={ this.handleChange } type="text" name="description" value={ this.props.description } />
+                        Description: <textarea onChange={ this.handleChange } type="text" name="description" value={ this.state.description } />
                     </div>
                     <div>
                         <small>* required</small>

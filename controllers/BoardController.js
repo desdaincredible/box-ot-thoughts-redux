@@ -64,6 +64,23 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+// show
+router.get('/:id', async (req, res) => {
+    try{
+        const board = await Board.findById(req.params.id)
+        res.json({
+            status: 200,
+            data: board
+        })
+    }catch(err){
+        console.log(err);
+        res.json({
+            status: 500,
+            data: err
+        })    
+    }
+});
+
 // delete
 router.delete('/:id', async (req, res) => {
     console.log('delete route');

@@ -79,7 +79,7 @@ p {
 }
 
 .image-options img {
-  width: 30%;
+  /* width: 30%; */
   height: auto;
   padding: 5px;
   background-color: white
@@ -132,10 +132,17 @@ p {
   margin-top: 30px
 }
 
-img {
-  margin:5px;
-}
+/* img {
+  margin: 5px
+} */
 
 .selected{
    box-shadow:0px 12px 22px 1px #333;
+}
+
+@media (min-width: 576px) {
+  #search-modal {
+    max-width: 800px;
+    margin: 1.75rem auto;
+  }
 }
