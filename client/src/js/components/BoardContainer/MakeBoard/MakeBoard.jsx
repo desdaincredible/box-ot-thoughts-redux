@@ -20,37 +20,40 @@ class ConnectedMakeBoard extends Component {
             selectedImage: {}
         }
     };
-    componentDidMount(){
-        this.setState({
-            title: '',
-            description: '',
-        })
-    }
-
     handleChange = (e) => {
         this.setState({
             [e.target.name] : e.target.value
         })
     };
+
+    clearForm = () => { 
+        document.getElementById("newBoard").reset();
+    };
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.createBoard(this.state);
-        this.setState({
-            title: '',
-            description: '',
-        })
+        // this.setState({
+        //     title: this.props.title,
+        //     description: this.props.description,
+        // })
+        this.clearForm()
+ 
     };
 
     render(){
+        // console.log(this.state)
+        console.log(this.props)
+
         return (
             <div>
                 <h1>Create a New Board</h1>
-                <form onSubmit={ this.handleSubmit }>
+                <form onSubmit={ this.handleSubmit } id="newBoard">
                     <div>
-                        *Title: <input onChange={ this.handleChange } type="text" name="title" placeholder="title"/>
+                        *Title: <input onChange={ this.handleChange } type="text" name="title" defaultValue="" />
                     </div>
                     <div>
-                        Description: <textarea onChange={ this.handleChange } type="text" name="description" placeholder="description" />
+                        Description: <textarea onChange={ this.handleChange } type="text" name="description" defaultValue="" />
                     </div>
                     <div>
                         <Button className="button" color="secondary" type="submit">Submit</Button>

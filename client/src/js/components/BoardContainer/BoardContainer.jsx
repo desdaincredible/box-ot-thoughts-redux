@@ -33,6 +33,8 @@ class ConnectedBoardContainer extends Component {
             search: "",
             results: [],
             images: [],
+            title: "",
+            description: "",
         }
         this.toggle = this.toggle.bind(this);
         this.toggleEdit = this.toggleEdit.bind(this);
@@ -123,7 +125,8 @@ class ConnectedBoardContainer extends Component {
         return (
             <div>   
                 <MakeBoard updateBoard={ this.updateBoard } toggle={ this.toggle } modal={ this.state.modal }
-                search={this.state.search} results={this.state.results} images={this.state.images}
+                search={this.state.search} results={this.state.results} images={this.state.images} title={this.state.title}
+                description={this.state.description}
 
                 selectedImageStateChange={ this.selectedImageStateChange } 
                 handleImageClick={ this.handleImageClick } imageStateChange={ this.imageStateChange } 

@@ -11,13 +11,6 @@ class EditBoard extends Component {
             editBoardId: "",
         }
     };
-    // componentDidMount(){
-    //     this.setState({
-    //         title: "",
-    //         description: "",
-    //         editBoardId: ""
-    //     })
-    // }
     componentWillReceiveProps = (nextProps) => {
         this.setState({
             title: nextProps.title,
@@ -46,7 +39,6 @@ class EditBoard extends Component {
     };
 
     render(){
-        console.log(this.state)
         if(!this.state.editBoardId){
             this.findBoard(this.props.editBoardId)
         }
