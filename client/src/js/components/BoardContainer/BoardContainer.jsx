@@ -36,6 +36,7 @@ class ConnectedBoardContainer extends Component {
             images: [],
             title: "",
             description: "",
+            selectedImage: "",
         }
         this.toggle = this.toggle.bind(this);
         this.toggleEdit = this.toggleEdit.bind(this);
@@ -55,6 +56,8 @@ class ConnectedBoardContainer extends Component {
     }; 
 
     updateBoard = async (foundBoard, id) => {
+        console.log(foundBoard, id, 'foundboard in update')
+        console.log(this.state.selectedImage)
         foundBoard.images.push(this.state.selectedImage);
         await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${id}`, {
             method: "PUT",
@@ -64,9 +67,11 @@ class ConnectedBoardContainer extends Component {
             }
         })
         this.props.getUser();
+        console.log(foundBoard)
     };
 
     handleImageClick = (e, image) => {
+        console.log(e, 'image click')
         this.setState({
             selectedImage: e
         })
@@ -85,8 +90,8 @@ class ConnectedBoardContainer extends Component {
     };
 
     addNewImageButtonClick = (e) => {
-            this.setState({
-                id: e.target.id
+        this.setState({
+            id: e.target.id
         })
         this.toggle();
     };

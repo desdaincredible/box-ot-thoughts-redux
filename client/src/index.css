@@ -146,3 +146,11 @@ p {
     margin: 1.75rem auto;
   }
 }
+
+.login-screen {
+  margin: 10px;
+}
+
+input {
+  width: 40%;
+}

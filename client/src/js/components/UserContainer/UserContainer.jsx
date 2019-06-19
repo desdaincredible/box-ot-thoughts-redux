@@ -3,14 +3,21 @@ import Login from './Login/Login';
 import Register from './Register/Register';
 
 class UserContainer extends Component {
+    constructor(){
+        super();
+        this.state = {
+          registerToggle: false,
+        }
+    }
     
     render(){
         return(
             <div>
                     <div>
-                        <Register />
-                        <hr />
                         <Login />
+                        <hr />
+                        Create new account
+                        <Register />
                     </div>
             </div>
         )

@@ -49,9 +49,7 @@ router.post('/', async (req, res) => {
 // edit
 router.put('/:id', async (req, res) => {
     try{
-        console.log(req.body.editBoardId, 'hit again')
-        const updatedBoard = await Board.findByIdAndUpdate(req.body.editBoardId, req.body, {new: true})
-        console.log(updatedBoard)
+        const updatedBoard = await Board.findByIdAndUpdate(req.body._id, req.body, {new: true})
         await updatedBoard.save();
         res.json({
             status: 200,
