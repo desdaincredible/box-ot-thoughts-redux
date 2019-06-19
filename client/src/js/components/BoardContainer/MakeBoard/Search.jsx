@@ -17,7 +17,8 @@ class Search extends Component {
         this.setState({
             search: nextProps.search,
             results: nextProps.results,
-            images: nextProps.images
+            images: nextProps.images,
+            currentPage: 1
         })
     }
 
@@ -69,11 +70,22 @@ class Search extends Component {
     handleSubmit = (e, id) => {
         e.preventDefault();
         this.searchImages(this.state);
+        this.setState({
+            currentPage: this.state.currentPage + 1
+        })
+    };
+
+    moreImages = () => {
+        this.setState({
+            currentPage: this.state.currentPage + 1,
+            results: [],
+            images: []
+        })
+        console.log(this.state)
+        this.searchImages(this.state);
     };
 
     render(){
-        // console.log(this.props, 'props')
-        // console.log(this.state, 'state')
         return (
             <div>
                 <Modal isOpen={ this.props.modal } toggle={ this.props.toggle } id="search-modal">
@@ -83,7 +95,8 @@ class Search extends Component {
                         <input onChange={ this.handleChange } type="text" name="search" placeholder=""/>
                         <Button color="secondary" className="button" type="submit">Submit</Button>
                     </form>
-                <SearchResults images={ this.state.images } handleImageClick = { this.props.handleImageClick } classChange={ this.classChange }  />
+                <SearchResults images={ this.state.images } handleImageClick = { this.props.handleImageClick } classChange={ this.classChange } 
+                moreImages={this.moreImages}  />
                 </ModalBody>
                 <ModalFooter>
                     <Button color="secondary" onClick={ this.props.handleImageSubmit }>Add to Board</Button>{' '}

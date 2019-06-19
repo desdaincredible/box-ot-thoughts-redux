@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import { Button } from 'reactstrap';
 
 class SearchResults extends Component {
     componentDidMount(){
@@ -21,6 +22,7 @@ class SearchResults extends Component {
         return(
             <div>
             { searchResultsList }
+            <Button onClick={this.props.moreImages}>more...</Button>
             </div>
         )
     }
