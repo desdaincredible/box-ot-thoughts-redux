@@ -81,7 +81,6 @@ class Search extends Component {
             results: [],
             images: []
         })
-        console.log(this.state)
         this.searchImages(this.state);
     };
 

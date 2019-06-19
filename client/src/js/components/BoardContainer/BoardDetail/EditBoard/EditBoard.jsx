@@ -8,41 +8,46 @@ class EditBoard extends Component {
         this.state = {
             title: "",
             description: "",
-            oldTitle: "",
-            oldDescription: "",
             editBoardId: "",
         }
     };
+    // componentDidMount(){
+    //     this.setState({
+    //         title: "",
+    //         description: "",
+    //         editBoardId: ""
+    //     })
+    // }
+    componentWillReceiveProps = (nextProps) => {
+        this.setState({
+            title: nextProps.title,
+            description: nextProps.description,
+            editBoardId: ""
+        })
+    }
 
     handleChange = (e) => {
         this.setState({
-            [e.target.name] : e.target.value
-            // [e.target.name] : 
-            //     ...this.state,
-                    // [e.target.name] : e.target.value
-            
+            [e.target.name] : e.target.value,
         })
     };
 
     findBoard = async (foundBoard) => {
-        try{
-            const board = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${foundBoard}`, {
-                credentials: 'include'
-            })
-            const boardJSON = await board.json();
-            this.setState({
-                oldTitle: boardJSON.data.title,
-                oldDescription: boardJSON.data.description,
-                editBoardId: foundBoard
-            })
-        } catch(err){
-            console.log(err)
-        }
+        const board = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${foundBoard}`, {
+            credentials: 'include'
+        })
+        const boardJSON = await board.json();
+        this.setState({
+            title: boardJSON.data.title,
+            description: boardJSON.data.description,
+            editBoardId: foundBoard
+        })
         
     };
 
     render(){
-        if(this.state.editBoardId === ""){
+        console.log(this.state)
+        if(!this.state.editBoardId){
             this.findBoard(this.props.editBoardId)
         }
 
@@ -52,10 +57,10 @@ class EditBoard extends Component {
                 <ModalHeader toggle={ this.props.toggleEdit }>Edit Board Details</ModalHeader>
                 <ModalBody>
                     <div>
-                        *Title: <input onChange={ this.handleChange } type="text" name="title" />
+                        *Title: <input onChange={ this.handleChange } type="text" name="title" defaultValue={this.state.title} />
                     </div>
                     <div>
-                        Description: <textarea onChange={ this.handleChange } type="text" name="description" />
+                        Description: <input onChange={ this.handleChange } name="description" defaultValue={this.state.description} />
                     </div>
                     <div>
                         <small>* required</small>
