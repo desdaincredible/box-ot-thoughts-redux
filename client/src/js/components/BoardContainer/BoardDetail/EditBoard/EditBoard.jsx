@@ -8,28 +8,41 @@ class EditBoard extends Component {
         this.state = {
             title: "",
             description: "",
+            oldTitle: "",
+            oldDescription: "",
+            editBoardId: "",
         }
     };
 
     handleChange = (e) => {
         this.setState({
-            [e.target.name] : e.target.value,
+            [e.target.name] : e.target.value
+            // [e.target.name] : 
+            //     ...this.state,
+                    // [e.target.name] : e.target.value
+            
         })
     };
 
     findBoard = async (foundBoard) => {
-        const board = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${foundBoard}`, {
-            credentials: 'include'
-        })
-        const boardJSON = await board.json();
-        this.setState({
-            title: boardJSON.data.title,
-            description: boardJSON.data.description
-        })
+        try{
+            const board = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${foundBoard}`, {
+                credentials: 'include'
+            })
+            const boardJSON = await board.json();
+            this.setState({
+                oldTitle: boardJSON.data.title,
+                oldDescription: boardJSON.data.description,
+                editBoardId: foundBoard
+            })
+        } catch(err){
+            console.log(err)
+        }
+        
     };
 
     render(){
-        if(this.props.editModal){
+        if(this.state.editBoardId === ""){
             this.findBoard(this.props.editBoardId)
         }
 
@@ -39,10 +52,10 @@ class EditBoard extends Component {
                 <ModalHeader toggle={ this.props.toggleEdit }>Edit Board Details</ModalHeader>
                 <ModalBody>
                     <div>
-                        *Title: <input onChange={ this.handleChange } type="text" name="title" value={ this.state.title }/>
+                        *Title: <input onChange={ this.handleChange } type="text" name="title" />
                     </div>
                     <div>
-                        Description: <textarea onChange={ this.handleChange } type="text" name="description" value={ this.state.description } />
+                        Description: <textarea onChange={ this.handleChange } type="text" name="description" />
                     </div>
                     <div>
                         <small>* required</small>

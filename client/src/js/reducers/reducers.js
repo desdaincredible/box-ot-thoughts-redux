@@ -42,11 +42,10 @@ export const rootReducer = (state = initialState, action) => {
   }
   if (action.type === UPDATE_BOARD){
     const addNewBoard = state.boards.map((board) => {
-      if(board._id === action.payload.id){
+      if(board._id === action.payload.editBoardId){
         return {...board, title: action.payload.title, description: action.payload.description}
       } else return board
     })
-    console.log(addNewBoard)
     return Object.assign({}, state, { boards: addNewBoard })
   }
   

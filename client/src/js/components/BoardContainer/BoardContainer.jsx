@@ -111,7 +111,10 @@ class ConnectedBoardContainer extends Component {
     };
 
     handleEditSubmit = (response) => {
-        this.props.editBoard(response)
+        console.log(response, 'response')
+        console.log(this.state.editBoardId, 'editboardid')
+
+        this.props.editBoard(response, this.state.editBoardId)
         this.toggleEdit();
     };
 
