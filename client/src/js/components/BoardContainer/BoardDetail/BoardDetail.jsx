@@ -37,7 +37,7 @@ class ConnectedBoardDetail extends Component {
             <div>
                 <div>
                     <EditBoard toggleEdit={ this.props.toggleEdit } editModal={ this.props.editModal } handleEditSubmit={ this.props.handleEditSubmit } editBoardId={ this.props.editBoardId }
-                    title={this.state.title} description={this.state.description} />
+                    title={this.state.title} description={this.state.description} findBoardToggle={this.props.findBoardToggle} />
                 </div>
                 <div>
                     { boardsToShow }

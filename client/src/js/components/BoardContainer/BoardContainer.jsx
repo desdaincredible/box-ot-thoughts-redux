@@ -30,6 +30,7 @@ class ConnectedBoardContainer extends Component {
             editModal: false,
             id: "",
             editBoardId: "",
+            findBoardToggle: false,
             search: "",
             results: [],
             images: [],
@@ -108,7 +109,8 @@ class ConnectedBoardContainer extends Component {
     editBoardButtonClick = (e) => {
         this.toggleEdit();
         this.setState({
-            editBoardId: e.target.id
+            editBoardId: e.target.id,
+            findBoardToggle: true,
         })
     };
 
@@ -119,6 +121,7 @@ class ConnectedBoardContainer extends Component {
         this.props.editBoard(response, this.state.editBoardId)
         this.toggleEdit();
     };
+
 
 
     render(){
@@ -136,7 +139,7 @@ class ConnectedBoardContainer extends Component {
                 {
                     this.props.renderBoardDetail ?
                         <BoardDetail toggleEdit={ this.toggleEdit } editModal={ this.state.editModal } editBoardId={ this.state.editBoardId }
-                        editBoardButtonClick={ this.editBoardButtonClick } handleEditSubmit={ this.handleEditSubmit }
+                        editBoardButtonClick={ this.editBoardButtonClick } handleEditSubmit={ this.handleEditSubmit } findBoardToggle={this.state.findBoardToggle}
 
                         addNewImageButtonClick={ this.addNewImageButtonClick } 
                         deleteBoardButtonClick={ this.deleteBoardButtonClick } deleteImageButtonClick= { this.deleteImageButtonClick }
