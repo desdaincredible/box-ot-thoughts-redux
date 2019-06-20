@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ImageList from './ImageList';
 import EditBoard from './EditBoard/EditBoard';
+import Search from './Search/Search';
 import { Button } from 'reactstrap';
 
 const mapStateToProps = state => {
@@ -19,12 +20,16 @@ class ConnectedBoardDetail extends Component {
     };
 
     render(){
+        console.log(this.props, 'props')
         const usersBoardsToShow = this.props.boards;
         const boardsToShow = usersBoardsToShow.map((board, i) => {
             return (
                 <div key={ i } id={ board._id } className="parent">
-                    <div><h2>{ board.title }</h2></div>
-                    <div>{ board.description }</div>
+                    <div className="col-sm-8 col-centered">
+                        <div className="board-title"><h2>{ board.title }</h2></div>
+                        <div className="board-description">{ board.description }</div>
+                    </div>
+
                     <Button className="button" onClick={ this.props.addNewImageButtonClick } id={ board._id }>Add New Image</Button>
                     <Button className="button" id={ board._id } onClick={ this.props.editBoardButtonClick }>Edit Board</Button>
                     <Button className="button" id={ board._id } onClick={ this.props.deleteBoardButtonClick }>Delete Board</Button>
@@ -41,6 +46,14 @@ class ConnectedBoardDetail extends Component {
                 </div>
                 <div>
                     { boardsToShow }
+                </div>
+                <div>
+                    <Search search={this.props.search} results={this.props.results} images={this.props.images} searchToggleStateChange={this.props.searchToggleStateChange}
+                    searchToggle={this.props.searchToggle}
+                    
+                    imageStateChange={ this.props.imageStateChange } handleImageClick={ this.props.handleImageClick } 
+                    updateBoard={ this.props.updateBoard } toggle={ this.props.toggle } modal={ this.props.modal } 
+                    classChange={ this.props.classChange } handleImageSubmit={ this.props.handleImageSubmit } clearModal= { this.props.clearModal } />
                 </div>
             </div>
         )

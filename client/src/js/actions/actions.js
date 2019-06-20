@@ -1,14 +1,6 @@
 import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD, 
   DELETE_BOARD } from '../constants/action-types';
 
-// const mapStateToProps = state => {
-//   return { 
-//       renderBoardDetail: state.renderBoardDetail, 
-//       boards: state.boards,
-//       selectedImage: state.selectedImage,
-//   }
-// };
-
 export function handleRegister(formData){
     return function(dispatch){
         return fetch("http://localhost:9000/users", {
@@ -26,7 +18,6 @@ export function handleRegister(formData){
 };
 
 export function handleLogin(formData){
-  console.log(formData, 'form data')
   return function(dispatch){
     return fetch('http://localhost:9000/users/login', {
       method: "POST",
@@ -36,7 +27,6 @@ export function handleLogin(formData){
         "Content-Type": "application/json"
       }
       })
-      .then(console.log('passed fetch'))
         .then(response => response.json())
         .then(res => {if(res.status === 200){ dispatch({ type: LOGIN, payload: res })}} )
   }

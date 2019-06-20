@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Search from './Search';
 import { Button } from 'reactstrap';
 import { createBoard } from '../../../actions/actions';
 
@@ -33,46 +32,31 @@ class ConnectedMakeBoard extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.createBoard(this.state);
-        // this.setState({
-        //     title: this.props.title,
-        //     description: this.props.description,
-        // })
+        this.props.createBoardToggleStateChange();
         this.clearForm()
  
     };
 
     render(){
-        // console.log(this.state)
-        console.log(this.props)
-
+        console.log(this.props, 'props')
         return (
-            <div>
-                <h1>Create a New Board</h1>
+            <div className="col-sm-12">
+
+            <div className="col-sm-6 col-centered" id="parent">
+                <h2 id="grey-h3">Create a New Board</h2>
                 <form onSubmit={ this.handleSubmit } id="newBoard">
+                    <p className="input-title">*Title:</p> 
+                    <input onChange={ this.handleChange } type="text" name="title" defaultValue="" className="inputs" />
+                    <p className="input-title">Description:</p> 
+                    <textarea onChange={ this.handleChange } type="text" name="description" defaultValue="" className="inputs" />
                     <div>
-                        *Title: <input onChange={ this.handleChange } type="text" name="title" defaultValue="" />
-                    </div>
-                    <div>
-                        Description: <textarea onChange={ this.handleChange } type="text" name="description" defaultValue="" />
-                    </div>
-                    <div>
-                        <Button className="button" color="secondary" type="submit">Submit</Button>
+                        <Button className="button" color="secondary" type="submit">Create</Button>
                     </div>
                     </form>
-
-                    <div>
-                        <small>* required</small>
-                    </div>
-                    <div>
-                        <Search search={this.props.search} results={this.props.results} images={this.props.images}
-                        
-                        imageStateChange={ this.props.imageStateChange } handleImageClick={ this.props.handleImageClick } 
-                        updateBoard={ this.props.updateBoard } toggle={ this.props.toggle } modal={ this.props.modal } 
-                        classChange={ this.props.classChange } handleImageSubmit={ this.props.handleImageSubmit } clearModal= { this.props.clearModal } />
-                    </div>
-
+                    <p className="input-title"><small>* required</small></p>
             </div>
-
+                <hr />
+            </div>
         )
     }
 

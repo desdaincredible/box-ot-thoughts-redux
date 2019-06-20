@@ -25,7 +25,6 @@ class ConnectedBoardContainer extends Component {
     constructor(){
         super();
         this.state = {
-            classChange: false,
             modal: false,
             editModal: false,
             id: "",
@@ -37,9 +36,11 @@ class ConnectedBoardContainer extends Component {
             title: "",
             description: "",
             selectedImage: "",
+            searchToggle: false,
         }
         this.toggle = this.toggle.bind(this);
         this.toggleEdit = this.toggleEdit.bind(this);
+        this.searchToggleStateChange = this.searchToggleStateChange.bind(this);
     }
 
     componentDidMount(){
@@ -79,7 +80,14 @@ class ConnectedBoardContainer extends Component {
 
     toggle(){
         this.setState(prevState => ({
-            modal: !prevState.modal
+            modal: !prevState.modal,
+            // searchToggle: !prevState.searchToggle
+        }));
+    };
+
+    searchToggleStateChange(){
+        this.setState(prevState => ({
+            searchToggle: !prevState.searchToggle
         }));
     };
 
@@ -91,7 +99,8 @@ class ConnectedBoardContainer extends Component {
 
     addNewImageButtonClick = (e) => {
         this.setState({
-            id: e.target.id
+            id: e.target.id,
+            searchToggle: false
         })
         this.toggle();
     };
@@ -127,31 +136,40 @@ class ConnectedBoardContainer extends Component {
         this.toggleEdit();
     };
 
-
-
     render(){
-        return (
-            <div>   
-                <MakeBoard updateBoard={ this.updateBoard } toggle={ this.toggle } modal={ this.state.modal }
-                search={this.state.search} results={this.state.results} images={this.state.images} title={this.state.title}
-                description={this.state.description}
+        // console.log(this.props.currentUser.boards)
+        // console.log(this.state, 'state')
+        console.log(this.state.searchToggle, 'toggle')
 
-                selectedImageStateChange={ this.selectedImageStateChange } 
-                handleImageClick={ this.handleImageClick } imageStateChange={ this.imageStateChange } 
-                  classChange={ this.state.classChange } 
-                handleImageSubmit={ this.handleImageSubmit } />
-                <hr />
+        return (
+            <div>
+                {
+                    this.props.createBoardToggle ?
+                    <MakeBoard updateBoard={ this.updateBoard } 
+                    search={this.state.search} results={this.state.results} images={this.state.images} title={this.state.title}
+                    description={this.state.description} createBoardToggleStateChange={this.props.createBoardToggleStateChange}
+    
+                    selectedImageStateChange={ this.selectedImageStateChange } 
+                     imageStateChange={ this.imageStateChange } 
+                      classChange={ this.state.classChange } 
+                     />
+                    :
+                    null
+                }   
+
                 {
                     this.props.renderBoardDetail ?
                         <BoardDetail toggleEdit={ this.toggleEdit } editModal={ this.state.editModal } editBoardId={ this.state.editBoardId }
                         editBoardButtonClick={ this.editBoardButtonClick } handleEditSubmit={ this.handleEditSubmit } findBoardToggle={this.state.findBoardToggle}
+                        toggle={ this.toggle } modal={ this.state.modal } images={this.state.images} handleImageClick={ this.handleImageClick }
+                        handleImageSubmit={ this.handleImageSubmit } searchToggleStateChange={this.searchToggleStateChange} searchToggle={this.state.searchToggle} 
 
                         addNewImageButtonClick={ this.addNewImageButtonClick } 
                         deleteBoardButtonClick={ this.deleteBoardButtonClick } deleteImageButtonClick= { this.deleteImageButtonClick }
                         />
                     :
                     null
-                }      
+                }
                  
             </div>
         )

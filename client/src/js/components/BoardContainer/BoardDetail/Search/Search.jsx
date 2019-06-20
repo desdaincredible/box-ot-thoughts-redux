@@ -10,7 +10,8 @@ class Search extends Component {
             search: "",
             results: [],
             images: [],
-            currentPage: 1
+            currentPage: 1,
+            searchToggle: this.props,
         }
     };
     componentWillReceiveProps = (nextProps) => {
@@ -71,8 +72,9 @@ class Search extends Component {
         e.preventDefault();
         this.searchImages(this.state);
         this.setState({
-            currentPage: this.state.currentPage + 1
+            currentPage: this.state.currentPage + 1,
         })
+        this.props.searchToggleStateChange(this.props.searchToggle);
     };
 
     moreImages = () => {
@@ -85,17 +87,28 @@ class Search extends Component {
     };
 
     render(){
+        console.log(this.props.searchToggle, 'props')
         return (
             <div>
                 <Modal isOpen={ this.props.modal } toggle={ this.props.toggle } id="search-modal">
-                <ModalHeader toggle={ this.props.toggle }>Search for Images</ModalHeader>
+                <ModalHeader toggle={ this.props.toggle }><h5>Image Search</h5></ModalHeader>
                 <ModalBody>
-                    <form onSubmit={ this.handleSubmit }>
-                        <input onChange={ this.handleChange } type="text" name="search" placeholder=""/>
-                        <Button color="secondary" className="button" type="submit">Submit</Button>
-                    </form>
-                <SearchResults images={ this.state.images } handleImageClick = { this.props.handleImageClick } classChange={ this.classChange } 
-                moreImages={this.moreImages}  />
+                    {
+                        !this.props.searchToggle ?
+                        <div className="col-sm-8 col-centered">
+                            <form onSubmit={ this.handleSubmit }>
+                                <p className="input-title">Search for an image to add to your board.</p>
+                                <input onChange={ this.handleChange } type="text" name="search" placeholder="" className="inputs"/>
+                                <Button color="secondary" className="button" type="submit">Search</Button>
+                            </form>
+                        </div>
+                        :
+                        <div>
+                            <SearchResults images={ this.state.images } handleImageClick = { this.props.handleImageClick } classChange={ this.classChange }   />
+                            <Button onClick={this.moreImages}>more...</Button>
+                        </div>
+                    }
+
                 </ModalBody>
                 <ModalFooter>
                     <Button color="secondary" onClick={ this.props.handleImageSubmit }>Add to Board</Button>{' '}

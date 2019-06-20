@@ -13,7 +13,6 @@ class Login extends Component {
         }
     };
     handleSubmit = (e) => {
-        console.log(this.state, 'hit login')
         e.preventDefault();
         this.props.handleLogin(this.state);
         this.setState({
@@ -32,11 +31,11 @@ class Login extends Component {
                 <h3>Login</h3>
                 <form onSubmit={ this.handleSubmit }>
                     <p className="input-title">*username:</p>
-                    <input onChange={ this.handleChange } type="text" name="username" className="login-screen" />
+                    <input onChange={ this.handleChange } type="text" name="username" className="inputs home-inputs" />
                     <p className="input-title">*password:</p>
-                    <input onChange={ this.handleChange } type="password" name="password" className="login-screen" />
+                    <input onChange={ this.handleChange } type="password" name="password" className="inputs home-inputs" />
                     <div>
-                    <Button type="submit" className="login-screen">Login</Button>
+                    <Button type="submit">Login</Button>
                     </div>
                     <p className="input-title"><small>*required</small></p>
                 </form>

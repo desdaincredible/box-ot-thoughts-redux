@@ -14,7 +14,6 @@ class EditBoard extends Component {
         }
     };
     componentDidMount(){
-        // this.props.findBoard()
         this.setState({
             editBoardId: this.props.editBoardId,
             findBoardToggle: true,
@@ -36,12 +35,10 @@ class EditBoard extends Component {
     };
 
     findBoard = async () => {
-        console.log(this.props.editBoardId)
         const board = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${this.props.editBoardId}`, {
             credentials: 'include'
         })
         const boardJSON = await board.json();
-        console.log(boardJSON, 'json')
         this.setState({
             editBoard: boardJSON.data,
             findBoardToggle: false
@@ -49,7 +46,6 @@ class EditBoard extends Component {
     };
 
     render(){
-        console.log(this.state)
         if(this.state.findBoardToggle){
             this.findBoard(this.state.editBoardId)
         }

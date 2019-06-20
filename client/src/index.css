@@ -48,9 +48,10 @@ h4 {
 }
 
 h5 {
-  font-family: 'Cormorant Garamond', serif;
-  letter-spacing: 0.1em;
-  padding: 20px;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: .7em;
+  color: lightgrey;
+  text-transform: uppercase;
 }
 
 p {
@@ -66,7 +67,7 @@ p {
 }
 
 .header {
-  background-image: url('https://source.unsplash.com/random?{textures, patterns, colors}');
+  background-image: url('https://source.unsplash.com/random?{abstract}');
   background-size: cover;
   background-attachment: fixed;
   background-position: center top;
@@ -102,7 +103,6 @@ p {
 }
 
 .image-options img {
-  /* width: 30%; */
   height: auto;
   padding: 5px;
   background-color: white
@@ -151,6 +151,10 @@ p {
   margin: 10px;
 }
 
+.parent {
+  margin-top: 30px
+}
+
 #parent {
   margin-top: 30px
 }
@@ -171,20 +175,21 @@ p {
     font-family: 'Lato', sans-serif;
     padding: 20px;
     border: solid white 1px;
+    background: rgba(0,0,0,0.4);
   }
 }
 
-.login-screen {
+.inputs {
   margin: 10px;
-  background-color: rgba(255,255,255,0.5);
-
-}
-
-input {
-  width: 80%;
   background-color: rgba(0,0,0,0.1);
   border: none;
   text-align: center;
+  width: 100%;
+}
+
+.home-inputs {
+  background-color: rgba(255,255,255,0.8);
+  width: 80%;
 }
 
 textarea {
@@ -202,6 +207,7 @@ textarea {
 .btn {
   font-family: 'Lato', sans-serif;
   letter-spacing: .1em;
+  margin: 10px;
 }
 
 .inline-block {
@@ -227,12 +233,13 @@ textarea {
     font-family: 'Lato', sans-serif;
     padding: 20px;
     border: solid white 1px;
+    background: rgba(0,0,0,0.4);
   }
 }
 
 .home {
   margin-top: -8px;
-  background: url('https://source.unsplash.com/random?{textures, patterns, colors}') no-repeat center center fixed; 
+  background: url('https://source.unsplash.com/random?{abstract}') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -250,6 +257,7 @@ textarea {
 .col-centered{
   float: none;
   margin: 0 auto;
+  text-align: center;
 }
 
 .black-bkg {
@@ -257,8 +265,28 @@ textarea {
   padding-top: 40px;
 }
 
-.col-sm-12 {
+#blk-header {
   padding-right: 0;
   padding-left: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.65);
+  margin-right: 0;
+  margin-left: 0;
+}
+
+#navi {
+  margin: 20px;
+}
+
+#grey-h3 {
+  font-size: 1.75rem;
+  color: lightgrey
+}
+
+.board-description {
+  margin: 20px 0;
+}
+
+.board-title {
+  border-bottom: solid lightgrey 1px;
+  display: inline-block;
 }

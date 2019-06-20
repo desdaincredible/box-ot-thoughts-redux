@@ -19,27 +19,51 @@ const mapStateToProps = state => {
 };
 
 class ConnectedApp extends Component {
+  constructor(){
+    super();
+    this.state = {
+      createBoardToggle: false,
+    }
+  }
+  handleCreateClick = () => {
+    this.setState(prevState => ({
+      createBoardToggle: !prevState.createBoardToggle
+    }));
+  };
+
+  createBoardToggleStateChange = () => {
+    this.setState({
+      createBoardToggle: false
+    })
+  };
+
   render(){
     return (
       <div className="App">
 
         <div className="header">
-          <div className="col-sm-12">
+          <div className="row" id="blk-header">
             
-            <div className="col-sm-8 no-blur">
+            <div className="col-sm-8">
               <h4>a box of thoughts</h4>
             </div>
+            {
+              this.props.loggedIn ?
+            <div className="col-sm-4">           
+              <Button id="navi" outline color="light" onClick={ this.handleCreateClick}>Create Board</Button>
+              <Button id="navi" outline color="light" onClick={ this.props.logout }>Logout</Button>
+            </div>
+            :
+            null
+            }
+
           </div>
         </div>
 
         {
           this.props.loggedIn ?
           <div>
-            <div className="col-sm-4">           
-              <Button className="navi" outline color="light">Create Board</Button>
-              <Button className="navi" outline color="light" onClick={ this.props.logout }>Logout</Button>
-            </div>
-            <BoardContainer />
+            <BoardContainer currentUser={this.props.currentUser} createBoardToggle={this.state.createBoardToggle} createBoardToggleStateChange={this.createBoardToggleStateChange} />
           </div>
 
             :

@@ -26,11 +26,11 @@ class Register extends Component {
                 <h3>Create New Account</h3>
                 <form onSubmit={ this.handleSubmit }>
                     <p className="input-title">*username</p> 
-                    <input onChange={ this.handleChange } type="text" name="username" className="login-screen" />
+                    <input onChange={ this.handleChange } type="text" name="username" className="inputs home-inputs" />
                     <p className="input-title">*password:</p> 
-                    <input onChange={ this.handleChange } type="password" name="password" className="login-screen" />
+                    <input onChange={ this.handleChange } type="password" name="password" className="inputs home-inputs" />
                     <div>
-                    <Button color="secondary" type="submit" className="login-screen">Register</Button>
+                    <Button color="secondary" type="submit">Register</Button>
                     </div>
                     <p className="input-title"><small>*required</small></p>
                 </form>

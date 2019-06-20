@@ -22,7 +22,6 @@ class SearchResults extends Component {
         return(
             <div>
             { searchResultsList }
-            <Button onClick={this.props.moreImages}>more...</Button>
             </div>
         )
     }

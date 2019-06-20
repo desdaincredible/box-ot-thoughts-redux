@@ -17,7 +17,6 @@ export const rootReducer = (state = initialState, action) => {
     } 
   }
   if (action.type === LOGIN) {
-    console.log(action.payload.data, 'hit login reducer')
     return {
       loggedIn: true,
       currentUser: action.payload.data
