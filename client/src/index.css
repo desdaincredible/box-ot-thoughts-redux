@@ -3,9 +3,9 @@ body {
   font-family: 'Lato', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-transform: uppercase;
   letter-spacing: .1em;
-  color: #666666
+  color: #666666;
+  height: 100%;
 }
 
 code {
@@ -18,7 +18,7 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: lightgray;
-  padding: 20px
+  padding: 20px;
 }
 
 h2 {
@@ -29,24 +29,47 @@ h2 {
   padding: 30px, 0, 0, 0;
 }
 
+h3 {
+  font-family: 'Cormorant Garamond', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: white;
+  padding: 20px;
+}
+
 h4 {
   font-family: 'Lato', sans-serif;
   letter-spacing: .7em;
   color: white;
   padding: 20px;
-  background: rgba(0,0,0,0.6);
   height: 15%;
+  text-transform: uppercase;
+  text-align: left;
+}
 
+h5 {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 0.1em;
+  padding: 20px;
 }
 
 p {
-  color: grey
+  color: grey;
+  font-family: 'Lato', sans-serif;
+}
+
+.input-title {
+  color: lightgrey;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 0;
+  text-transform: uppercase;
 }
 
 .header {
-  background-image: url('https://source.unsplash.com/random?{texture}');
-  opacity: .7;
+  background-image: url('https://source.unsplash.com/random?{textures, patterns, colors}');
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center top;
 }
 
 #photos {
@@ -125,16 +148,12 @@ p {
 }
 
 .button {
-  margin: 10px
+  margin: 10px;
 }
 
 #parent {
   margin-top: 30px
 }
-
-/* img {
-  margin: 5px
-} */
 
 .selected{
    box-shadow:0px 12px 22px 1px #333;
@@ -145,12 +164,101 @@ p {
     max-width: 800px;
     margin: 1.75rem auto;
   }
+
+  .app-description {
+    color: white;
+    font-size: 26px;
+    font-family: 'Lato', sans-serif;
+    padding: 20px;
+    border: solid white 1px;
+  }
 }
 
 .login-screen {
   margin: 10px;
+  background-color: rgba(255,255,255,0.5);
+
 }
 
 input {
-  width: 40%;
+  width: 80%;
+  background-color: rgba(0,0,0,0.1);
+  border: none;
+  text-align: center;
+}
+
+textarea {
+  width: 30%;
+}
+
+.add-image-square {
+  width: 90%;
+  height: 200px;
+  border: solid #666666 1px;
+  padding: 50% 5%;
+  margin: 5%;
+}
+
+.btn {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: .1em;
+}
+
+.inline-block {
+  display: inline-block;
+  width: 50%;
+  padding: 5% 0 15% 0;
+}
+
+
+@media (max-width: 575px) {
+  .inline-block {
+    display: block;
+    width: 100%;
+  }
+
+  .white-background {
+    border-right: none;
+  }
+
+  .app-description {
+    color: white;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    padding: 20px;
+    border: solid white 1px;
+  }
+}
+
+.home {
+  margin-top: -8px;
+  background: url('https://source.unsplash.com/random?{textures, patterns, colors}') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100%;
+  background-attachment: fixed;
+  background-position: center top;
+}
+
+.vertical-div-line {
+  border-right: solid lightgrey 1px;
+  padding: 10px 10px 30px 10px;
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.black-bkg {
+  background-color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+}
+
+.col-sm-12 {
+  padding-right: 0;
+  padding-left: 0;
+  background: rgba(0,0,0,0.5);
 }

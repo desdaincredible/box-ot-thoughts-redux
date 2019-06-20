@@ -12,13 +12,18 @@ class UserContainer extends Component {
     
     render(){
         return(
-            <div>
-                    <div>
+            <div className="home">
+                <div className="black-bkg">
+                    <div className="col-sm-5 col-centered app-description">
+                    Create your own collection of stunning mood and vision boards.
+                    </div>
+                    <div className="inline-block vertical-div-line">
                         <Login />
-                        <hr />
-                        Create new account
+                    </div>
+                    <div className="inline-block">
                         <Register />
                     </div>
+                </div>
             </div>
         )
     }

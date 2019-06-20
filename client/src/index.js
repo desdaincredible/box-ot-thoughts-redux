@@ -6,7 +6,7 @@ import './index.css';
 import App from './js/components/App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
-import index from "./js/index";
+// import index from "./js/index";
 
 render(
     <Provider store={ store }>

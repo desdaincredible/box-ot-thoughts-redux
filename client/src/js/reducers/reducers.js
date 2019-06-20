@@ -1,4 +1,4 @@
-import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD, DELETE_BOARD, EDIT_BOARD } from "../constants/action-types";
+import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD, DELETE_BOARD } from "../constants/action-types";
 
 const initialState = {
   loggedIn: false,
@@ -17,6 +17,7 @@ export const rootReducer = (state = initialState, action) => {
     } 
   }
   if (action.type === LOGIN) {
+    console.log(action.payload.data, 'hit login reducer')
     return {
       loggedIn: true,
       currentUser: action.payload.data

@@ -13,6 +13,7 @@ class Login extends Component {
         }
     };
     handleSubmit = (e) => {
+        console.log(this.state, 'hit login')
         e.preventDefault();
         this.props.handleLogin(this.state);
         this.setState({
@@ -27,17 +28,17 @@ class Login extends Component {
     };
     render(){
         return(
-            <div className="login-screen">
-                <h1>Login</h1>
+            <div>
+                <h3>Login</h3>
                 <form onSubmit={ this.handleSubmit }>
-                    <div>*username:</div>
+                    <p className="input-title">*username:</p>
                     <input onChange={ this.handleChange } type="text" name="username" className="login-screen" />
-                    <div>*password:</div>
+                    <p className="input-title">*password:</p>
                     <input onChange={ this.handleChange } type="password" name="password" className="login-screen" />
                     <div>
                     <Button type="submit" className="login-screen">Login</Button>
                     </div>
-                    <div><small>*required</small></div>
+                    <p className="input-title"><small>*required</small></p>
                 </form>
             </div>
         )

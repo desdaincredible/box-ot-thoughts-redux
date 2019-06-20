@@ -1,13 +1,13 @@
 import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD, 
-  DELETE_BOARD, EDIT_BOARD } from '../constants/action-types';
+  DELETE_BOARD } from '../constants/action-types';
 
-const mapStateToProps = state => {
-  return { 
-      renderBoardDetail: state.renderBoardDetail, 
-      boards: state.boards,
-      selectedImage: state.selectedImage,
-  }
-};
+// const mapStateToProps = state => {
+//   return { 
+//       renderBoardDetail: state.renderBoardDetail, 
+//       boards: state.boards,
+//       selectedImage: state.selectedImage,
+//   }
+// };
 
 export function handleRegister(formData){
     return function(dispatch){
@@ -26,6 +26,7 @@ export function handleRegister(formData){
 };
 
 export function handleLogin(formData){
+  console.log(formData, 'form data')
   return function(dispatch){
     return fetch('http://localhost:9000/users/login', {
       method: "POST",
@@ -35,8 +36,9 @@ export function handleLogin(formData){
         "Content-Type": "application/json"
       }
       })
+      .then(console.log('passed fetch'))
         .then(response => response.json())
-        .then(json => { dispatch({ type: LOGIN, payload: json })})
+        .then(res => {if(res.status === 200){ dispatch({ type: LOGIN, payload: res })}} )
   }
 };
 
@@ -102,25 +104,3 @@ export function editBoard(response){
   )
   }
 };
-
-// export function updateBoard(foundBoard){
-//   return function(dispatch){
-//     // foundBoard.images.push(this.state.selectedImage);
-
-//     return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${foundBoard._id}`, {
-//       method: "PUT",
-//       body: JSON.stringify(foundBoard),
-//       headers: {
-//           "Content-Type": "application/json"
-//       }
-//   })
-//     .then(res => { dispatch(updateBoard(foundBoard));
-//     });  
-//   }
-// };
-
-// export function updatedBoardToDisplay(foundBoard){
-//   return { type: UPDATE_BOARD, payload: foundBoard.json()
-//   };
-// };
-

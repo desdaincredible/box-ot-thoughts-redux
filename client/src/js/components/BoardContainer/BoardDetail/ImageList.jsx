@@ -19,9 +19,10 @@ class ImageList extends Component {
         return(
             <div className="container-fluid">
                 <div className="row justify-content-center">
-                    <div className="col-10">
+                    <div className="col-10 image-container">
                         <section id="photos">
                             { imageList1 }
+                            <div className="add-image-square">Add new image</div>
                         </section>
                     </div>
                 </div>

@@ -23,16 +23,16 @@ class Register extends Component {
     render(){
         return(
             <div>
-                <h1>Register</h1>
+                <h3>Create New Account</h3>
                 <form onSubmit={ this.handleSubmit }>
-                    <div>*username</div> 
+                    <p className="input-title">*username</p> 
                     <input onChange={ this.handleChange } type="text" name="username" className="login-screen" />
-                    <div>*password:</div> 
+                    <p className="input-title">*password:</p> 
                     <input onChange={ this.handleChange } type="password" name="password" className="login-screen" />
                     <div>
                     <Button color="secondary" type="submit" className="login-screen">Register</Button>
                     </div>
-                    <div><small>*required</small></div>
+                    <p className="input-title"><small>*required</small></p>
                 </form>
             </div>
         )

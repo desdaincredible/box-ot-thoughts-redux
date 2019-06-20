@@ -22,21 +22,31 @@ class ConnectedApp extends Component {
   render(){
     return (
       <div className="App">
+
         <div className="header">
-          <h4>a box of thoughts</h4>
-        </div>
-          
-          {
-            this.props.loggedIn ?
-            <div>
-            <Button outline color="secondary" onClick={ this.props.logout }>Logout</Button>
-            <BoardContainer />
+          <div className="col-sm-12">
+            
+            <div className="col-sm-8 no-blur">
+              <h4>a box of thoughts</h4>
             </div>
+          </div>
+        </div>
+
+        {
+          this.props.loggedIn ?
+          <div>
+            <div className="col-sm-4">           
+              <Button className="navi" outline color="light">Create Board</Button>
+              <Button className="navi" outline color="light" onClick={ this.props.logout }>Logout</Button>
+            </div>
+            <BoardContainer />
+          </div>
+
             :
             <div>
             <UserContainer />
             </div>
-          }
+        }
       </div>
     );
   }
