@@ -20,7 +20,6 @@ class ConnectedBoardDetail extends Component {
     };
 
     render(){
-        console.log(this.props, 'props')
         const usersBoardsToShow = this.props.boards;
         const boardsToShow = usersBoardsToShow.map((board, i) => {
             return (

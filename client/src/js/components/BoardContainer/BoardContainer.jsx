@@ -81,7 +81,6 @@ class ConnectedBoardContainer extends Component {
     toggle(){
         this.setState(prevState => ({
             modal: !prevState.modal,
-            // searchToggle: !prevState.searchToggle
         }));
     };
 
@@ -137,9 +136,6 @@ class ConnectedBoardContainer extends Component {
     };
 
     render(){
-        // console.log(this.props.currentUser.boards)
-        // console.log(this.state, 'state')
-        console.log(this.state.searchToggle, 'toggle')
 
         return (
             <div>

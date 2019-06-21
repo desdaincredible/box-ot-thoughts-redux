@@ -10,28 +10,30 @@ class Search extends Component {
             search: "",
             results: [],
             images: [],
-            currentPage: 1,
-            searchToggle: this.props,
+            currentPage: 0,
         }
     };
     componentWillReceiveProps = (nextProps) => {
-        this.setState({
-            search: nextProps.search,
-            results: nextProps.results,
-            images: nextProps.images,
-            currentPage: 1
-        })
+        if(this.state.currentPage === 0){
+            console.log('hit if')
+            this.setState({
+                results: [],
+                images: [],
+                currentPage: 1
+            })
+        }else{
+            console.log('hit else')
+            this.setState({
+                results: [],
+                images: [],
+                // currentPage: 1
+            })
+        }
+        
     }
 
-    clearModal = () => {
-        this.setState({
-            search: this.props.search,
-            results: this.props.results,
-            images: this.props.images
-        })
-    };
-
     searchImages = () => {
+        console.log(this.state, 'state')
         Axios({
           method: 'get',
           url: 'https://api.unsplash.com/search/photos',
@@ -63,7 +65,8 @@ class Search extends Component {
         const searchResultsArray = this.state.results.results;
         await searchResultsArray.map((result) => {
             this.setState({
-                images: [result.urls.regular, ...this.state.images]
+                images: [result.urls.regular, ...this.state.images],
+                search: this.state.search
             })
         })
     };
@@ -78,6 +81,7 @@ class Search extends Component {
     };
 
     moreImages = () => {
+        console.log('more')
         this.setState({
             currentPage: this.state.currentPage + 1,
             results: [],
@@ -86,12 +90,24 @@ class Search extends Component {
         this.searchImages(this.state);
     };
 
+    backImages = () => {
+        console.log('back')
+        if(this.state.currentPage > 1){
+        this.setState({
+            currentPage: this.state.currentPage - 1,
+            results: [],
+            images: []
+        })
+        this.searchImages(this.state);
+        }
+    };
+
     render(){
-        console.log(this.props.searchToggle, 'props')
+        // console.log(this.state.currentPage, 'state')
         return (
             <div>
                 <Modal isOpen={ this.props.modal } toggle={ this.props.toggle } id="search-modal">
-                <ModalHeader toggle={ this.props.toggle }><h5>Image Search</h5></ModalHeader>
+                <ModalHeader toggle={ this.props.toggle }><div className="modal-title">Image Search</div></ModalHeader>
                 <ModalBody>
                     {
                         !this.props.searchToggle ?
@@ -105,6 +121,8 @@ class Search extends Component {
                         :
                         <div>
                             <SearchResults images={ this.state.images } handleImageClick = { this.props.handleImageClick } classChange={ this.classChange }   />
+                            
+                            <Button onClick={this.backImages}>...back</Button>
                             <Button onClick={this.moreImages}>more...</Button>
                         </div>
                     }

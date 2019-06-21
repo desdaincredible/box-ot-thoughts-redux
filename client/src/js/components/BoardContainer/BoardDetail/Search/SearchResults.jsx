@@ -14,8 +14,8 @@ class SearchResults extends Component {
     render(){
         const searchResultsList = this.props.images.map((image, i) => {
             return(
-                <div className="image-options">
-                <img onClick={ () => this.props.handleImageClick(image) } alt="" src={ image } id={i} key={i}/>
+                <div className="image-options" key={i}>
+                <img onClick={ () => this.props.handleImageClick(image) } alt="" src={ image } id={i}/>
                 </div>
             )
         })

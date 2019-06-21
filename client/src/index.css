@@ -47,13 +47,6 @@ h4 {
   text-align: left;
 }
 
-h5 {
-  font-family: 'Lato', sans-serif;
-  letter-spacing: .7em;
-  color: lightgrey;
-  text-transform: uppercase;
-}
-
 p {
   color: grey;
   font-family: 'Lato', sans-serif;
@@ -289,4 +282,11 @@ textarea {
 .board-title {
   border-bottom: solid lightgrey 1px;
   display: inline-block;
+}
+
+.modal-title {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: .7em;
+  color: lightgrey;
+  text-transform: uppercase;
 }
