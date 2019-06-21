@@ -35,7 +35,7 @@ class Login extends Component {
                     <p className="input-title">*password:</p>
                     <input onChange={ this.handleChange } type="password" name="password" className="inputs home-inputs" />
                     <div>
-                    <Button type="submit">Login</Button>
+                    <Button id="home-buttons" type="submit">Login</Button>
                     </div>
                     <p className="input-title"><small>*required</small></p>
                 </form>

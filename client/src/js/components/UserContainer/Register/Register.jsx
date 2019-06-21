@@ -30,7 +30,7 @@ class Register extends Component {
                     <p className="input-title">*password:</p> 
                     <input onChange={ this.handleChange } type="password" name="password" className="inputs home-inputs" />
                     <div>
-                    <Button color="secondary" type="submit">Register</Button>
+                    <Button id="home-buttons" color="secondary" type="submit">Register</Button>
                     </div>
                     <p className="input-title"><small>*required</small></p>
                 </form>

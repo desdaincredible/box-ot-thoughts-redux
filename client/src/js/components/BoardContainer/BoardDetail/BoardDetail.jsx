@@ -23,17 +23,27 @@ class ConnectedBoardDetail extends Component {
         const usersBoardsToShow = this.props.boards;
         const boardsToShow = usersBoardsToShow.map((board, i) => {
             return (
-                <div key={ i } id={ board._id } className="parent">
-                    <div className="col-sm-8 col-centered">
-                        <div className="board-title"><h2>{ board.title }</h2></div>
-                        <div className="board-description">{ board.description }</div>
+                <div>
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-sm-7 board-div-line">
+                            <div key={ i } id={ board._id } className="parent">
+                                <div className="board-title"><h2>{ board.title }</h2></div>
+                                <div className="board-description">{ board.description }</div>
+                            </div>
+                        </div>
+                        <div className="col-sm-2 button-section">
+                            <Button className="board-buttons" id={ board._id } onClick={ this.props.editBoardButtonClick }>Edit</Button>
+                            <Button className="board-buttons" id={ board._id } onClick={ this.props.deleteBoardButtonClick }>Delete</Button>    
+                        </div>   
                     </div>
-
-                    <Button className="button" onClick={ this.props.addNewImageButtonClick } id={ board._id }>Add New Image</Button>
-                    <Button className="button" id={ board._id } onClick={ this.props.editBoardButtonClick }>Edit Board</Button>
-                    <Button className="button" id={ board._id } onClick={ this.props.deleteBoardButtonClick }>Delete Board</Button>
-                    <ImageList images = { board.images } deleteImageButtonClick= { this.props.deleteImageButtonClick } board = {board} />
                 </div>
+                <Button className="button" onClick={ this.props.addNewImageButtonClick } id={ board._id }>Add New Image</Button>
+
+                    <ImageList images = { board.images } deleteImageButtonClick= { this.props.deleteImageButtonClick } board = {board} />
+                </div>    
+                
+                
             )
         });  
 
