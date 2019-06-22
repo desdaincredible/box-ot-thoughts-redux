@@ -47,8 +47,13 @@ router.post('/', async (req, res) => {
 
 // edit
 router.put('/:id', async (req, res) => {
+    // if(req.body.editBoardId){
+        let id = req.body.editBoardId;
+    // }
     try{
-        const updatedBoard = await Board.findByIdAndUpdate(req.body.editBoardId, req.body, {new: true})
+        console.log(id, '<--------- id')
+        console.log(req.body, 'update')
+        const updatedBoard = await Board.findByIdAndUpdate(id || req.body._id, req.body, {new: true})
         await updatedBoard.save();
         res.json({
             status: 200,
