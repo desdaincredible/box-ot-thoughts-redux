@@ -114,7 +114,7 @@ class ConnectedBoardContainer extends Component {
         if(board.images[i] === image){
             board.images.splice(image, 1)
         };        
-        this.updateBoardAfterDelete(board);
+        this.props.editBoard(board)
     }; 
 
     editBoardButtonClick = (e) => {
