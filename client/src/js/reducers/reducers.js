@@ -1,4 +1,4 @@
-import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD, DELETE_BOARD } from "../constants/action-types";
+import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD, DELETE_BOARD, FIND_BOARD } from "../constants/action-types";
 
 const initialState = {
   loggedIn: false,
@@ -6,6 +6,7 @@ const initialState = {
   boards: [],
   renderBoardDetail: false,
   selectedImage: {},
+  editBoard: {},
   };
 
 
@@ -29,6 +30,7 @@ export const rootReducer = (state = initialState, action) => {
     } 
   }
   if (action.type === GET_USER) {
+    // console.log(action.payload, 'payload')
     return Object.assign({}, state, { boards: action.payload.data.boards, renderBoardDetail: true })
   }
   if (action.type === CREATE_BOARD){
@@ -48,7 +50,9 @@ export const rootReducer = (state = initialState, action) => {
     })
     return Object.assign({}, state, { boards: addNewBoard })
   }
-  
+  if (action.type === FIND_BOARD) {
+    return Object.assign({}, state, { editBoard: action.payload.data })
+  }
 
   return state;
 };

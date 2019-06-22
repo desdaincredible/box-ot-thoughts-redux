@@ -18,6 +18,7 @@ const mapStateToProps = state => {
         renderBoardDetail: state.renderBoardDetail, 
         boards: state.boards,
         selectedImage: state.selectedImage,
+        editBoard: state.editBoard,
     }
 };
 
@@ -43,7 +44,9 @@ class ConnectedBoardContainer extends Component {
     }
 
     componentDidMount(){
-        this.props.getUser();
+        if(!this.state.editModal){
+            this.props.getUser();
+        }
     };
 
     handleImageSubmit = ()=> {
@@ -56,8 +59,6 @@ class ConnectedBoardContainer extends Component {
     }; 
 
     updateBoard = async (foundBoard, id) => {
-        console.log(foundBoard, id, 'foundboard in update')
-        console.log(this.state.selectedImage)
         foundBoard.images.push(this.state.selectedImage);
         await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${id}`, {
             method: "PUT",
@@ -66,8 +67,6 @@ class ConnectedBoardContainer extends Component {
                 "Content-Type": "application/json"
             }
         })
-        this.props.getUser();
-        console.log(foundBoard)
     };
 
     handleImageClick = (e, image) => {
@@ -123,21 +122,15 @@ class ConnectedBoardContainer extends Component {
         this.setState({
             editBoardId: e.target.id,
         })
-        console.log(this.state, 'edit button clicked')
-
     };
 
     handleEditSubmit = (response) => {
-        console.log(response, 'response')
-        // console.log(this.state.editBoardId, 'editboardid')
-
-        this.props.editBoard(response, this.state.editBoardId)
+        console.log(response, 'handle edit sub')
+        this.props.editBoard(response)
         this.toggleEdit();
     };
 
     render(){
-        // console.log(this.state.editBoardId, 'editboardid')
-
         return (
             <div>
                 {

@@ -47,12 +47,8 @@ router.post('/', async (req, res) => {
 
 // edit
 router.put('/:id', async (req, res) => {
-    // if(req.body.editBoardId){
-        let id = req.body.editBoardId;
-    // }
+    let id = req.body.editBoardId;
     try{
-        console.log(id, '<--------- id')
-        console.log(req.body, 'update')
         const updatedBoard = await Board.findByIdAndUpdate(id || req.body._id, req.body, {new: true})
         await updatedBoard.save();
         res.json({
@@ -90,12 +86,9 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try{
         const deletedBoard = await Board.findByIdAndDelete(req.params.id);
-        console.log(deletedBoard, 'deleted board');
         const foundUser = await User.findOne({ boards: req.params.id });
-        console.log(foundUser, 'found user before save')
         foundUser.boards.remove(req.params.id);
         await foundUser.save();
-        console.log(foundUser, 'found user after save')
 
 
         res.json({

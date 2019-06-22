@@ -38,7 +38,6 @@ class ConnectedMakeBoard extends Component {
     };
 
     render(){
-        console.log(this.props, 'props')
         return (
             <div className="col-sm-12">
 

@@ -1,5 +1,5 @@
 import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE_BOARD, 
-  DELETE_BOARD } from '../constants/action-types';
+  DELETE_BOARD, FIND_BOARD } from '../constants/action-types';
 
 export function handleRegister(formData){
     return function(dispatch){
@@ -79,28 +79,17 @@ export function deleteBoard(foundBoard){
 
 export function findEditBoard(board){
   return function(dispatch){
-    return console.log(board, dispatch, "findEditBoard")
+    return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${board}`, {
+      credentials: 'include'
+    })
+      .then(response => response.json())
+      .then(json => { dispatch({ type: FIND_BOARD, payload: json })})
   }
-  // editBoard(board)
 }
 
-// findBoard = async () => {
-//   const board = await , {
-//       credentials: 'include'
-//   })
-//   const boardJSON = await board.json();
-//   this.setState({
-//       editBoard: boardJSON.data,
-//       findBoardToggle: false
-//   }) 
-//   console.log(board, 'findBoard')
-
-// };
-
 export function editBoard(response){
+  console.log(response, 'edit board')
   return function(dispatch){
-    // return console.log(response, 'editboard')
-
     return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${response}`, {
       method: "PUT",
       body: JSON.stringify(response),

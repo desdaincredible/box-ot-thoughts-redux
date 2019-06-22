@@ -15,25 +15,21 @@ class Search extends Component {
     };
     componentWillReceiveProps = (nextProps) => {
         if(this.state.currentPage === 0){
-            // console.log('hit if')
             this.setState({
                 results: [],
                 images: [],
                 currentPage: 1
             })
         }else{
-            // console.log('hit else')
             this.setState({
                 results: [],
                 images: [],
-                // currentPage: 1
             })
         }
         
     }
 
     searchImages = () => {
-        console.log(this.state, 'state')
         Axios({
           method: 'get',
           url: 'https://api.unsplash.com/search/photos',
@@ -103,7 +99,6 @@ class Search extends Component {
     };
 
     render(){
-        // console.log(this.state.currentPage, 'state')
         return (
             <div>
                 <Modal isOpen={ this.props.modal } toggle={ this.props.toggle } id="search-modal">

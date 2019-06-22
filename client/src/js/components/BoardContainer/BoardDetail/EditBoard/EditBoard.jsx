@@ -1,81 +1,87 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { findEditBoard } from '../../../../actions/actions';
 
-class EditBoard extends Component {
+const mapDispatchToProps = (dispatch) => {
+    return {
+        findEditBoard: board => dispatch(findEditBoard(board)),
+    }
+};
+
+const mapStateToProps = state => {
+    return {
+        editBoard: state.editBoard,
+    }
+}
+
+class ConnectedEditBoard extends Component {
     constructor(){
         super();
         this.state = {
             title: "",
             description: "",
-            // editBoardId:"",
             findBoardToggle: "",
             editBoard: {},
         }
     };
-    // componentDidMount(){
-    //     this.setState({
-    //         editBoardId: this.props.editBoardId,
-    //         findBoardToggle: true,
-    //     })
-    // }
-
-    // componentDidUpdate(){
-    //     console.log(this.props.editBoardId, 'update')
-    //     this.setState({
-    //         editBoardId: this.props.editBoardId
-    //     })
-    // }
 
     componentWillReceiveProps = (nextProps) => {
         this.setState({
-            title: nextProps.title,
-            description: nextProps.description,
+            // title: nextProps.title,
+            // description: nextProps.description,
             editBoardId: nextProps.editBoardId,
         })
     }
 
     handleChange = (e) => {
+        console.log(e.target.value)
+        console.log(e.target.name, 'name')
         this.setState({
             [e.target.name] : e.target.value,
         })
     };
 
-    // findBoard = async () => {
-    //     const board = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${this.props.editBoardId}`, {
-    //         credentials: 'include'
-    //     })
-    //     const boardJSON = await board.json();
-    //     this.setState({
-    //         editBoard: boardJSON.data,
-    //         findBoardToggle: false
-    //     }) 
-    //     console.log(board, 'findBoard')
-
-    // };
-
     render(){
-        console.log(this.state, 'edit state')
         // console.log(this.props, 'edit props')
+        // console.log(this.state, 'edit state')
 
-        // if(this.props.editModal){
-        //     this.findBoard(this.state.editBoardId)
-        // }
+
+        if(this.props.editModal){
+            this.props.findEditBoard(this.props.editBoardId)
+        }
 
         return (
             <div>
                 <Modal isOpen={ this.props.editModal } toggle={ this.props.toggleEdit }>
-                <ModalHeader toggle={ this.props.toggleEdit }>Edit Board Details</ModalHeader>
+                <ModalHeader toggle={ this.props.toggleEdit }><h5>Edit Board</h5></ModalHeader>
                 <ModalBody>
-                    <div>
-                        *Title: <input onChange={ this.handleChange } type="text" name="title" defaultValue={this.props.title} />
-                    </div>
-                    <div>
-                        Description: <input onChange={ this.handleChange } name="description" defaultValue={this.props.description} />
-                    </div>
-                    <div>
-                        <small>* required</small>
-                    </div>
+                    {
+                        this.props.editBoard ?
+                        <div>
+                            <div>
+                                *Title: <input onChange={this.handleChange} type="text" name="title" defaultValue={this.props.editBoard.title} />
+                            </div>
+                            <div>
+                                Description: <input onChange={this.handleChange} name="description" defaultValue={this.props.editBoard.description} />
+                            </div>
+                            <div>
+                                <small>* required</small>
+                            </div>
+                        </div>
+                    :
+                        <div>    
+                            <div>
+                                *Title: <input onChange={ this.handleChange } type="text" name="title" defaultValue="" />
+                            </div>
+                            <div>
+                                Description: <input onChange={ this.handleChange } name="description" defaultValue="" />
+                            </div>
+                            <div>
+                                <small>* required</small>
+                            </div>
+                        </div>
+                    }
                 </ModalBody>
                 <ModalFooter>
                     <Button color="secondary" onClick={ () => this.props.handleEditSubmit(this.state) }>Submit</Button>{' '}
@@ -87,4 +93,6 @@ class EditBoard extends Component {
     };
 }
 
-export default connect()(EditBoard);
+const EditBoard = connect(mapStateToProps, mapDispatchToProps)(ConnectedEditBoard);
+export default EditBoard;
+
