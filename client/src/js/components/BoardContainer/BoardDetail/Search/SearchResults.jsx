@@ -21,8 +21,8 @@ class SearchResults extends Component {
             )
         })
         return(
-            <div>
-            { searchResultsList }
+            <div className="col-sm-12 col-centered">
+                { searchResultsList }
             </div>
         )
     }

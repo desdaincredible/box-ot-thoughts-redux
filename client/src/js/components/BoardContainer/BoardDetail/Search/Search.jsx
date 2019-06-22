@@ -14,17 +14,15 @@ class Search extends Component {
         }
     };
 componentWillUpdate(){
-    console.log('hit')
     {
         !this.props.modal ?
         this.setState({
             results: [],
             images: [],
             currentPage: 1
-        })     
+        })         
         :
         console.log('no')
-   
     }
 }
 
@@ -127,15 +125,17 @@ componentWillUpdate(){
                 <ModalBody>
                     {
                         !this.props.searchToggle ?
-                        <div className="col-sm-8 col-centered">
-                            <form onSubmit={ this.handleSubmit }>
-                                <p className="input-title">Search for an image to add to your board.</p>
-                                <input onChange={ this.handleChange } type="text" name="search" placeholder="" className="inputs"/>
-                                <Button color="secondary" className="button" type="submit">Search</Button>
-                            </form>
+                        <div className="row justify-content-center">
+                            <div className="col-sm-8 col-centered">
+                                <form onSubmit={ this.handleSubmit }>
+                                    <p className="input-title">Search for an image to add to your board.</p>
+                                    <input onChange={ this.handleChange } type="text" name="search" placeholder="" className="inputs"/>
+                                    <Button color="secondary" className="button" type="submit">Search</Button>
+                                </form>
+                            </div>
                         </div>
                         :
-                        <div>
+                        <div className="row justify-content-center">
                             <SearchResults images={ this.state.images } handleImageClick = { this.props.handleImageClick }  />
                             
                             <Button onClick={this.backImages}>...back</Button>
@@ -147,7 +147,11 @@ componentWillUpdate(){
                 <ModalFooter>
                 {
                     this.props.searchToggle ?
-                    <Button color="secondary" onClick={ this.props.handleImageSubmit }>Add to Board</Button>
+                    <div>
+                        <Button color="secondary" onClick={ this.props.handleImageSubmit }>Add to Board</Button>
+                        <Button color="secondary" onClick={ this.props.searchToggleStateChange }>New Search</Button>
+                    </div>
+                    
                     :
                     null
                 }
