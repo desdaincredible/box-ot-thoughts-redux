@@ -124,7 +124,12 @@ class Search extends Component {
 
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="secondary" onClick={ this.props.handleImageSubmit }>Add to Board</Button>{' '}
+                {
+                    this.props.searchToggle ?
+                    <Button color="secondary" onClick={ this.props.handleImageSubmit }>Add to Board</Button>
+                    :
+                    null
+                }
                     <Button outline color="secondary" onClick={ this.props.toggle }>Cancel</Button>
                 </ModalFooter>
                 </Modal>
