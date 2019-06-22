@@ -97,8 +97,15 @@ p {
 
 .image-options img {
   height: auto;
-  padding: 5px;
-  background-color: white
+  /* padding: 5px; */
+}
+
+div#image-options img.not-selected {
+  display: none !important;
+}
+
+div#image-options img.selected {
+  border:3px solid teal !important;
 }
 
 @media (max-width: 1200px) {
@@ -373,4 +380,31 @@ textarea {
   text-align: center;
   border: solid white 1px;
   padding: 10% 15%;
+}
+
+div.image-options {
+    /* float: left; */
+    position: relative;
+}
+
+div.image-options img.fb_thumbnail {
+    border: 10px solid #3f96cf;
+}
+
+div.image-options img.nocheck {
+    display: none !important;
+}
+
+
+div.image-options img.fb_thumbnail.uncheckedborder {
+  border: 10px solid white !important;
+}
+
+div.image-options img.check {
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 17px;
+    top: 18px;
+    display: block;
 }
