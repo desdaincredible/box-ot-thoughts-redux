@@ -10,14 +10,10 @@ router.get('/', (req, res) => {
 // login
 router.post('/login', async (req, res) => {
     try{
-        console.log(req.body, 'hit')
         const foundUser = await User.findOne({username: req.body.username})
-        console.log(foundUser, '<===== found user')
 
         if(foundUser){
             if(bcrypt.compareSync(req.body.password, foundUser.password) === true){
-                console.log('hit if check')
-
                 req.session.logged = true;
                 req.session.username = foundUser.username;
                 req.session.usersId = foundUser._id;
@@ -26,7 +22,6 @@ router.post('/login', async (req, res) => {
                     data: foundUser,
                     reqSession: req.session
                 })
-                console.log(res.json())
             }
         }
         res.send({

@@ -78,12 +78,30 @@ export function deleteBoard(foundBoard){
 };
 
 export function findEditBoard(board){
-  editBoard(board)
+  return function(dispatch){
+    return console.log(board, dispatch, "findEditBoard")
+  }
+  // editBoard(board)
 }
+
+// findBoard = async () => {
+//   const board = await , {
+//       credentials: 'include'
+//   })
+//   const boardJSON = await board.json();
+//   this.setState({
+//       editBoard: boardJSON.data,
+//       findBoardToggle: false
+//   }) 
+//   console.log(board, 'findBoard')
+
+// };
 
 export function editBoard(response){
   return function(dispatch){
-    return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${response.id}`, {
+    // return console.log(response, 'editboard')
+
+    return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${response}`, {
       method: "PUT",
       body: JSON.stringify(response),
       headers: {

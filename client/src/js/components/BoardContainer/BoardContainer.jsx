@@ -29,7 +29,6 @@ class ConnectedBoardContainer extends Component {
             editModal: false,
             id: "",
             editBoardId: "",
-            findBoardToggle: false,
             search: "",
             results: [],
             images: [],
@@ -123,19 +122,21 @@ class ConnectedBoardContainer extends Component {
         this.toggleEdit();
         this.setState({
             editBoardId: e.target.id,
-            findBoardToggle: true,
         })
+        console.log(this.state, 'edit button clicked')
+
     };
 
     handleEditSubmit = (response) => {
         console.log(response, 'response')
-        console.log(this.state.editBoardId, 'editboardid')
+        // console.log(this.state.editBoardId, 'editboardid')
 
         this.props.editBoard(response, this.state.editBoardId)
         this.toggleEdit();
     };
 
     render(){
+        // console.log(this.state.editBoardId, 'editboardid')
 
         return (
             <div>
@@ -156,10 +157,11 @@ class ConnectedBoardContainer extends Component {
                 {
                     this.props.renderBoardDetail ?
                         <BoardDetail toggleEdit={ this.toggleEdit } editModal={ this.state.editModal } editBoardId={ this.state.editBoardId }
-                        editBoardButtonClick={ this.editBoardButtonClick } handleEditSubmit={ this.handleEditSubmit } findBoardToggle={this.state.findBoardToggle}
+                        editBoardButtonClick={ this.editBoardButtonClick } handleEditSubmit={ this.handleEditSubmit } 
                         toggle={ this.toggle } modal={ this.state.modal } images={this.state.images} handleImageClick={ this.handleImageClick }
                         handleImageSubmit={ this.handleImageSubmit } searchToggleStateChange={this.searchToggleStateChange} searchToggle={this.state.searchToggle} 
 
+                        
                         addNewImageButtonClick={ this.addNewImageButtonClick } 
                         deleteBoardButtonClick={ this.deleteBoardButtonClick } deleteImageButtonClick= { this.deleteImageButtonClick }
                         />

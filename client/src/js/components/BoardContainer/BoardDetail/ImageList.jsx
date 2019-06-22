@@ -22,7 +22,7 @@ class ImageList extends Component {
                     <div className="col-10 image-container">
                         <section id="photos">
                             { imageList1 }
-                            <div className="add-image-square">Add new image</div>
+                            {/* <div className="add-image-square">Add new image</div> */}
                         </section>
                     </div>
                 </div>

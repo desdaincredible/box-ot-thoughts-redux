@@ -25,7 +25,7 @@ h2 {
   font-family: 'Cormorant Garamond', serif;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #666666;
+  color: grey;
   padding: 30px, 0, 0, 0;
 }
 
@@ -206,6 +206,7 @@ textarea {
   font-family: 'Lato', sans-serif;
   letter-spacing: .1em;
   margin: 10px;
+  padding: .125rem .5rem;
 }
 
 .inline-block {
@@ -299,9 +300,7 @@ textarea {
 }
 
 .board-detail {
-  padding: 0 50px;
-  display: inline-block;
-  color: lightgrey;
+  padding-top: 3%;
 }
 
 .board-div-line {
@@ -312,6 +311,17 @@ textarea {
   width: 100%;
 }
 
+.outlined {
+  color: grey;
+  border: solid lightgrey 1px;
+}
+
+
+.button-section {
+  padding: 0;
+  margin: 30px 0;
+}
+
 .modal-title {
   font-family: 'Lato', sans-serif;
   letter-spacing: .7em;
@@ -319,7 +329,7 @@ textarea {
   text-transform: uppercase;
 }
 
-.button-section {
-  padding: 0;
-  margin: 30px 0;
+.valign-middle {
+  margin-top: auto;
+  margin-bottom: auto;
 }

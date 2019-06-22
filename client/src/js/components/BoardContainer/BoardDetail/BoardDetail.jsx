@@ -25,24 +25,24 @@ class ConnectedBoardDetail extends Component {
             return (
                 <div>
                 <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-sm-7 board-div-line">
-                            <div key={ i } id={ board._id } className="parent">
+                    <div className="row justify-content-center board-detail">
+                        <div className="col-sm-7 board-div-line valign-middle" key={ board.title }>
+                            <div id={ board._id } className="parent">
                                 <div className="board-title"><h2>{ board.title }</h2></div>
                                 <div className="board-description">{ board.description }</div>
                             </div>
                         </div>
-                        <div className="col-sm-2 button-section">
-                            <Button className="board-buttons" id={ board._id } onClick={ this.props.editBoardButtonClick }>Edit</Button>
+                        <div className="col-sm-2 button-section valign-middle" key={ i }>
+                            <Button className="board-buttons outlined" id={ board._id } onClick={ this.props.editBoardButtonClick }>Edit</Button>
                             <Button className="board-buttons" id={ board._id } onClick={ this.props.deleteBoardButtonClick }>Delete</Button>    
+                            <Button className="board-buttons" onClick={ this.props.addNewImageButtonClick } id={ board._id }>Add Image</Button>
                         </div>   
                     </div>
                 </div>
-                <Button className="button" onClick={ this.props.addNewImageButtonClick } id={ board._id }>Add New Image</Button>
+                
 
                     <ImageList images = { board.images } deleteImageButtonClick= { this.props.deleteImageButtonClick } board = {board} />
                 </div>    
-                
                 
             )
         });  
@@ -51,7 +51,9 @@ class ConnectedBoardDetail extends Component {
             <div>
                 <div>
                     <EditBoard toggleEdit={ this.props.toggleEdit } editModal={ this.props.editModal } handleEditSubmit={ this.props.handleEditSubmit } editBoardId={ this.props.editBoardId }
-                    title={this.state.title} description={this.state.description} findBoardToggle={this.props.findBoardToggle} />
+                    title={this.state.title} description={this.state.description} findBoardToggle={this.props.findBoardToggle} 
+                    
+                    findBoardToggleChange={this.props.findBoardToggleChange}/>
                 </div>
                 <div>
                     { boardsToShow }

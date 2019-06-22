@@ -8,23 +8,30 @@ class EditBoard extends Component {
         this.state = {
             title: "",
             description: "",
-            editBoardId:"",
-            findBoardToggle: false,
+            // editBoardId:"",
+            findBoardToggle: "",
             editBoard: {},
         }
     };
-    componentDidMount(){
-        this.setState({
-            editBoardId: this.props.editBoardId,
-            findBoardToggle: true,
-        })
-    }
+    // componentDidMount(){
+    //     this.setState({
+    //         editBoardId: this.props.editBoardId,
+    //         findBoardToggle: true,
+    //     })
+    // }
+
+    // componentDidUpdate(){
+    //     console.log(this.props.editBoardId, 'update')
+    //     this.setState({
+    //         editBoardId: this.props.editBoardId
+    //     })
+    // }
 
     componentWillReceiveProps = (nextProps) => {
         this.setState({
             title: nextProps.title,
             description: nextProps.description,
-            editBoardId: "",
+            editBoardId: nextProps.editBoardId,
         })
     }
 
@@ -34,21 +41,26 @@ class EditBoard extends Component {
         })
     };
 
-    findBoard = async () => {
-        const board = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${this.props.editBoardId}`, {
-            credentials: 'include'
-        })
-        const boardJSON = await board.json();
-        this.setState({
-            editBoard: boardJSON.data,
-            findBoardToggle: false
-        }) 
-    };
+    // findBoard = async () => {
+    //     const board = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${this.props.editBoardId}`, {
+    //         credentials: 'include'
+    //     })
+    //     const boardJSON = await board.json();
+    //     this.setState({
+    //         editBoard: boardJSON.data,
+    //         findBoardToggle: false
+    //     }) 
+    //     console.log(board, 'findBoard')
+
+    // };
 
     render(){
-        if(this.state.findBoardToggle){
-            this.findBoard(this.state.editBoardId)
-        }
+        console.log(this.state, 'edit state')
+        // console.log(this.props, 'edit props')
+
+        // if(this.props.editModal){
+        //     this.findBoard(this.state.editBoardId)
+        // }
 
         return (
             <div>

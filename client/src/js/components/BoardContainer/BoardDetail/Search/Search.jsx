@@ -15,14 +15,14 @@ class Search extends Component {
     };
     componentWillReceiveProps = (nextProps) => {
         if(this.state.currentPage === 0){
-            console.log('hit if')
+            // console.log('hit if')
             this.setState({
                 results: [],
                 images: [],
                 currentPage: 1
             })
         }else{
-            console.log('hit else')
+            // console.log('hit else')
             this.setState({
                 results: [],
                 images: [],
