@@ -59,7 +59,8 @@ router.post("/", async (req, res)=>{
         req.session.usersId = newUser._id;
         res.json({
             status: 200,
-            data: newUser
+            data: newUser,
+            reqSession: req.session
         })
     }catch(err){
         console.log(err);

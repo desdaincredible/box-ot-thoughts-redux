@@ -33,8 +33,7 @@ router.post('/', async (req, res) => {
         await user.save()
         res.json({
             status: 200,
-            data: newBoard,
-            
+            data: newBoard,  
         })
 
     } catch(err){
@@ -49,7 +48,6 @@ router.post('/', async (req, res) => {
 // edit
 router.put('/:id', async (req, res) => {
     try{
-        console.log(req.body, '<------------- req.body in edit')
         const updatedBoard = await Board.findByIdAndUpdate(req.body.editBoardId, req.body, {new: true})
         await updatedBoard.save();
         res.json({
@@ -82,12 +80,19 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+
 // delete
 router.delete('/:id', async (req, res) => {
-    console.log('delete route');
     try{
         const deletedBoard = await Board.findByIdAndDelete(req.params.id);
-        await updatedBoard.save();
+        console.log(deletedBoard, 'deleted board');
+        const foundUser = await User.findOne({ boards: req.params.id });
+        console.log(foundUser, 'found user before save')
+        foundUser.boards.remove(req.params.id);
+        await foundUser.save();
+        console.log(foundUser, 'found user after save')
+
+
         res.json({
             status: 200,
             data: deletedBoard
