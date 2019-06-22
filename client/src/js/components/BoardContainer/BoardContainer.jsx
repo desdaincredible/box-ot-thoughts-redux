@@ -110,14 +110,7 @@ class ConnectedBoardContainer extends Component {
     };
 
     deleteImageButtonClick = async (board, image, i) => {
-
-
         if(board.images[i] === image){
-            console.log(board, 'board')
-            console.log(image, 'image')
-            console.log(i, 'i')
-
-            console.log(board.images, 'board images')
             board.images.splice(i, 1)
         };        
         this.props.editBoard(board)
@@ -144,6 +137,7 @@ class ConnectedBoardContainer extends Component {
                     <MakeBoard updateBoard={ this.updateBoard } 
                     search={this.state.search} results={this.state.results} images={this.state.images} title={this.state.title}
                     description={this.state.description} createBoardToggleStateChange={this.props.createBoardToggleStateChange}
+                    
     
                     selectedImageStateChange={ this.selectedImageStateChange } 
                      imageStateChange={ this.imageStateChange } 

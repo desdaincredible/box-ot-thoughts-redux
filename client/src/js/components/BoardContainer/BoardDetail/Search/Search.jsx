@@ -13,14 +13,32 @@ class Search extends Component {
             currentPage: 0,
         }
     };
+componentWillUpdate(){
+    console.log('hit')
+    {
+        !this.props.modal ?
+        this.setState({
+            results: [],
+            images: [],
+            currentPage: 1
+        })     
+        :
+        console.log('no')
+   
+    }
+}
+
     componentWillReceiveProps = (nextProps) => {
         if(this.state.currentPage === 0){
+            console.log('hit if')
             this.setState({
                 results: [],
                 images: [],
                 currentPage: 1
             })
         }else{
+            console.log('hit else')
+
             this.setState({
                 results: [],
                 images: [],
@@ -77,7 +95,7 @@ class Search extends Component {
     };
 
     moreImages = () => {
-        console.log('more')
+        console.log(this.state.currentPage, 'more')
         this.setState({
             currentPage: this.state.currentPage + 1,
             results: [],
@@ -87,7 +105,7 @@ class Search extends Component {
     };
 
     backImages = () => {
-        console.log('back')
+        console.log(this.state.currentPage, 'back')
         if(this.state.currentPage > 1){
         this.setState({
             currentPage: this.state.currentPage - 1,
@@ -99,6 +117,9 @@ class Search extends Component {
     };
 
     render(){
+        console.log(this.state.currentPage, 'current pg')
+     console.log(this.props)
+
         return (
             <div>
                 <Modal isOpen={ this.props.modal } toggle={ this.props.toggle } id="search-modal">
@@ -115,7 +136,7 @@ class Search extends Component {
                         </div>
                         :
                         <div>
-                            <SearchResults images={ this.state.images } handleImageClick = { this.props.handleImageClick } classChange={ this.classChange }   />
+                            <SearchResults images={ this.state.images } handleImageClick = { this.props.handleImageClick }  />
                             
                             <Button onClick={this.backImages}>...back</Button>
                             <Button onClick={this.moreImages}>more...</Button>

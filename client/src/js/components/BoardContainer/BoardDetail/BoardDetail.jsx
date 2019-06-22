@@ -57,11 +57,11 @@ class ConnectedBoardDetail extends Component {
                     { boardsToShow }
                 </div>
                 <div>
-                    <Search search={this.props.search} results={this.props.results} images={this.props.images} searchToggleStateChange={this.props.searchToggleStateChange}
+                    <Search search={this.props.search} results={this.props.results} images={this.props.images} modal={ this.props.modal } searchToggleStateChange={this.props.searchToggleStateChange}
                     searchToggle={this.props.searchToggle}
                     
                     imageStateChange={ this.props.imageStateChange } handleImageClick={ this.props.handleImageClick } 
-                    updateBoard={ this.props.updateBoard } toggle={ this.props.toggle } modal={ this.props.modal } 
+                    updateBoard={ this.props.updateBoard } toggle={ this.props.toggle }  
                     classChange={ this.props.classChange } handleImageSubmit={ this.props.handleImageSubmit } clearModal= { this.props.clearModal } />
                 </div>
             </div>
