@@ -3,7 +3,7 @@ import { REGISTER, LOGIN, LOGOUT, GET_USER, CREATE_BOARD, SELECTED_IMAGE, UPDATE
 
 export function handleRegister(formData){
     return function(dispatch){
-        return fetch("http://localhost:9000/users", {
+        return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/users`, {
             method: "POST",
             body: JSON.stringify(formData),
             credentials: 'include',
@@ -19,7 +19,7 @@ export function handleRegister(formData){
 
 export function handleLogin(formData){
   return function(dispatch){
-    return fetch('http://localhost:9000/users/login', {
+    return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/users/login`, {
       method: "POST",
       body: JSON.stringify(formData),
       credentials: 'include',
