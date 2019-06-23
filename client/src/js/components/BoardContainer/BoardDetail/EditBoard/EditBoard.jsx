@@ -35,18 +35,12 @@ class ConnectedEditBoard extends Component {
     }
 
     handleChange = (e) => {
-        console.log(e.target.value)
-        console.log(e.target.name, 'name')
         this.setState({
             [e.target.name] : e.target.value,
         })
     };
 
     render(){
-        // console.log(this.props, 'edit props')
-        // console.log(this.state, 'edit state')
-
-
         if(this.props.editModal){
             this.props.findEditBoard(this.props.editBoardId)
         }

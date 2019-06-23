@@ -88,7 +88,6 @@ export function findEditBoard(board){
 }
 
 export function editBoard(response){
-  console.log(response, 'edit board')
   return function(dispatch){
     return fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/boards/${response}`, {
       method: "PUT",

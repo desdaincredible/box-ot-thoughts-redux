@@ -23,22 +23,20 @@ class ConnectedBoardDetail extends Component {
         const usersBoardsToShow = this.props.boards;
         const boardsToShow = usersBoardsToShow.map((board, i) => {
             return (
-                <div>
-                <div className="container">
+                <div className="container" key={i}>
                     <div className="row justify-content-center board-detail">
-                        <div className="col-sm-7 board-div-line valign-middle" key={ board.title }>
+                        <div className="col-sm-7 board-div-line valign-middle">
                             <div id={ board._id } className="parent">
                                 <div className="board-title"><h2>{ board.title }</h2></div>
                                 <div className="board-description">{ board.description }</div>
                             </div>
                         </div>
                         <div className="col-sm-2 button-section valign-middle" key={ i }>
-                            <Button className="board-buttons outlined" id={ board._id } onClick={ this.props.editBoardButtonClick }>Edit</Button>
-                            <Button className="board-buttons" id={ board._id } onClick={ this.props.deleteBoardButtonClick }>Delete</Button>    
+                            <Button outline color="secondary" className="board-buttons" id={ board._id } onClick={ this.props.editBoardButtonClick }>Edit</Button>
+                            <Button outline color="secondary" className="board-buttons" id={ board._id } onClick={ this.props.deleteBoardButtonClick }>Delete</Button>    
                             <Button className="board-buttons" onClick={ this.props.addNewImageButtonClick } id={ board._id }>Add Image</Button>
                         </div>   
                     </div>
-                </div>
                 
 
                     <ImageList images = { board.images } deleteImageButtonClick= { this.props.deleteImageButtonClick } board = {board} />

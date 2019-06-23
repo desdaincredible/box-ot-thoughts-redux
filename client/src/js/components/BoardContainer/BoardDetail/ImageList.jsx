@@ -12,10 +12,10 @@ class ImageList extends Component {
         if(this.props.images){
             imageList1 = this.props.images.map((image, i) => {
                 return(
-                    <div className="img-hover-container">
+                    <div className="img-hover-container" key={i}>
                         <img className="image-on-board" onClick={ ( ) => this.props.deleteImageButtonClick(this.props.board, image, i) } alt="" key={ i } id={ image} src={ image } />
-                        <div class="overlay" onClick={ ( ) => this.props.deleteImageButtonClick(this.props.board, image, i) }>
-                            <div class="text">click to delete</div>
+                        <div className="overlay" onClick={ ( ) => this.props.deleteImageButtonClick(this.props.board, image, i) }>
+                            <div className="text">Delete</div>
                         </div>
                     </div>
                 )

@@ -12,8 +12,8 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 const Unsplash = require('unsplash-js').default;
 
 const unsplash = new Unsplash({
-  applicationId: "1fe232c10d045efb942c686798a897086057edb740c100d8ee47adf69d77c998",
-  secret: "8e580bcf031fd093e5d435b4451b9fa0f05d7bb74eba277608d04fef202f284e"
+  applicationId: process.env.APPLICATION_ID,
+  secret: process.env.UNSPLASH_SECRET
 });
 const whitelist = [process.env.REACT_ADDRESS, process.env.REACT_APP_BACKEND_ADDRESS, "https://api.unsplash.com/search/photos"];
 const corsOptions = {
@@ -31,20 +31,15 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(session({
     saveUninitialized: true,
-    secret: "supersecretsafestuff",
+    secret: process.env.SESSION_SECRET,
     resave: false,
-    // store: store,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+        maxAge: 1000 * 60 * 60 * 24 * 7 
       },
 }))
 
 app.use(morgan('short'));
 app.use(bodyParser.json());
-// app.use((req, res, next)=>{
-//     console.log(`request incoming from user ${req.session.userId}`)
-//     next();
-// })
 
 const userController = require('./controllers/UserController');
 const boardController = require('./controllers/BoardController'); 
@@ -59,6 +54,3 @@ const port = process.env.PORT || 9000;
 app.listen(port, ()=>{
     console.log("back-end server working")
 })
-
-
-// unsplash api user id 1fe232c10d045efb942c686798a897086057edb740c100d8ee47adf69d77c998

@@ -30,7 +30,6 @@ export const rootReducer = (state = initialState, action) => {
     } 
   }
   if (action.type === GET_USER) {
-    // console.log(action.payload, 'payload')
     return Object.assign({}, state, { boards: action.payload.data.boards, renderBoardDetail: true })
   }
   if (action.type === CREATE_BOARD){

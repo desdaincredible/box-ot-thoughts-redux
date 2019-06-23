@@ -13,30 +13,15 @@ class Search extends Component {
             currentPage: 0,
         }
     };
-componentWillUpdate(){
-    {
-        !this.props.modal ?
-        this.setState({
-            results: [],
-            images: [],
-            currentPage: 1
-        })         
-        :
-        console.log('no')
-    }
-}
 
     componentWillReceiveProps = (nextProps) => {
-        if(this.state.currentPage === 0){
-            console.log('hit if')
+        if(this.state.currentPage === 0 || !this.props.modal){
             this.setState({
                 results: [],
                 images: [],
                 currentPage: 1
             })
         }else{
-            console.log('hit else')
-
             this.setState({
                 results: [],
                 images: [],
@@ -93,7 +78,6 @@ componentWillUpdate(){
     };
 
     moreImages = () => {
-        console.log(this.state.currentPage, 'more')
         this.setState({
             currentPage: this.state.currentPage + 1,
             results: [],
@@ -103,7 +87,6 @@ componentWillUpdate(){
     };
 
     backImages = () => {
-        console.log(this.state.currentPage, 'back')
         if(this.state.currentPage > 1){
         this.setState({
             currentPage: this.state.currentPage - 1,
@@ -115,9 +98,6 @@ componentWillUpdate(){
     };
 
     render(){
-        console.log(this.state.currentPage, 'current pg')
-     console.log(this.props)
-
         return (
             <div>
                 <Modal isOpen={ this.props.modal } toggle={ this.props.toggle } id="search-modal">

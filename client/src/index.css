@@ -343,11 +343,11 @@ textarea {
 
 .overlay {
   position: absolute;
-  top: 0;
+  /* top: 0; */
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100%;
+  height: 60px;
   width: 100%;
   opacity: 0;
   transition: .5s ease;
@@ -360,7 +360,6 @@ textarea {
 
 .text {
   color: white;
-  text-transform: uppercase;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -369,7 +368,8 @@ textarea {
   transform: translate(-50%, -50%);
   text-align: center;
   border: solid white 1px;
-  padding: 10% 15%;
+  border-radius: 5px;
+  padding: 6px 10px;;
 }
 
 .highlight {
