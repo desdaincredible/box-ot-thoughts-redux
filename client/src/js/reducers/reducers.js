@@ -33,6 +33,7 @@ export const rootReducer = (state = initialState, action) => {
     return Object.assign({}, state, { boards: action.payload.data.boards, renderBoardDetail: true })
   }
   if (action.type === CREATE_BOARD){
+    console.log(state, 'create board')
     return Object.assign({}, state, { boards: state.boards.concat(action.payload.data) });
   }
   if (action.type === SELECTED_IMAGE){
