@@ -15,7 +15,8 @@ const unsplash = new Unsplash({
   applicationId: process.env.APPLICATION_ID,
   secret: process.env.UNSPLASH_SECRET
 });
-const whitelist = [process.env.REACT_ADDRESS, process.env.REACT_APP_BACKEND_ADDRESS, "https://api.unsplash.com/search/photos", "https://a-box-of-thoughts.herokuapp.com"];
+const whitelist = "*";
+// const whitelist = [process.env.REACT_ADDRESS, process.env.REACT_APP_BACKEND_ADDRESS, "https://api.unsplash.com/search/photos", "https://a-box-of-thoughts.herokuapp.com"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
