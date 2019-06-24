@@ -38,6 +38,10 @@ app.use(session({
       },
 }))
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+}
+
 app.use(morgan('short'));
 app.use(bodyParser.json());
 
@@ -45,8 +49,8 @@ const userController = require('./controllers/UserController');
 const boardController = require('./controllers/BoardController'); 
 app.use('/users', userController);
 app.use('/boards', boardController);
-app.get('*', (req,res) =>{
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+app.get('*', (req, res) => {
+	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 
